@@ -1,0 +1,2 @@
+sudo tcpdump -vv -i wlp2s0 -W 1200 | grep google.com
+

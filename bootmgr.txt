@@ -1,0 +1,3 @@
+sudo efibootmgr
+
+sudo efibootmgr -Bb 0001
