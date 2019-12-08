@@ -1,1 +1,1 @@
-sudo dnf install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpmvfif
+https://www.youtube.com/watch?v=olImp6zF0aA
