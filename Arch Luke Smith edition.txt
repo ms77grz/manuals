@@ -1,0 +1,48 @@
+Arch Linux MBR installation 
+
+RESERCH IT
+# packer arch linux scripts
+
+lsblk
+
+Puting ISO on USB drive (sdb)
+# sudo dd if=Downloads/archlinux-2019.12.01-x86_64.iso of=/dev/sdc status="progress"
+
+Check UEFI
+# ls /sys/firmware/efi/efivars
+
+Check Internet
+# ping ya.ru
+
+For WiFi connection
+# wifi-menu
+
+Enable network time synchronization
+# timedatectl set-ntp true
+# timedatectl status
+
+Creating partition table
+# fdisk /dev/sdb
+Command(m for help):
+
+Print the partition table
+Command(m for help): p
+
+Delete existing partition
+Command(m for help): d
+
+Create new partition ### BOOT PARTITION
+Command(m for help): n
+Select(default p): Enter
+Partition number (default 1): Enter
+First sector: Enter
+Last sector: +200M
+
+Do you want to remove the signature?: y
+
+Create new partition ### SWAP PARTITION (150% of RAM size = RAM 8GB/ SWAP 12GB )
+Command(m for help): n
+Select(default p): Enter
+Partition number (default 2): Enter
+First sector: Enter
+Last sector: +12G
