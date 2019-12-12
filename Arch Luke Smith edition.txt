@@ -1,11 +1,12 @@
-Arch Linux MBR installation 
+Arch Linux Legacy MBR Installation x86_64
 
 RESERCH IT
 # packer arch linux scripts
 
-lsblk
+Print all block devices
+#lsblk
 
-Puting ISO on USB drive (sdb)
+Puting ISO on USB drive (sdc)
 # sudo dd if=Downloads/archlinux-2019.12.01-x86_64.iso of=/dev/sdc status="progress"
 
 Check UEFI
@@ -21,6 +22,12 @@ Enable network time synchronization
 # timedatectl set-ntp true
 # timedatectl status
 
+We need a new partition table:
+sdb1 200M /boot
+sdb2 12GB [SWAP]
+sdb3 30G /
+sdb4 13.7G /home
+
 Creating partition table
 # fdisk /dev/sdb
 Command(m for help):
@@ -28,7 +35,7 @@ Command(m for help):
 Print the partition table
 Command(m for help): p
 
-Delete existing partition
+Delete existing partition(s) or one by one
 Command(m for help): d
 
 Create new partition ### BOOT PARTITION
@@ -46,3 +53,90 @@ Select(default p): Enter
 Partition number (default 2): Enter
 First sector: Enter
 Last sector: +12G
+
+Create new partition ### ROOT PARTITION
+Command(m for help): n
+Select(default p): Enter
+Partition number (default 3): Enter
+First sector: Enter
+Last sector: +25G
+
+Do you want to remove the signature?: y
+
+Create new partition ### HOME PARTITION
+Command(m for help): n
+Select(default e): p
+Selected partiton 4
+First sector: Enter
+Last sector: Enter
+
+Do you want to remove the signature?: y
+
+Command(m for help): p
+Command(m for help): w
+
+# lsblk
+
+Making filesystems for partitions
+sdb1	/boot
+sdb3	/
+sdb4	/home
+
+# mkfs.ext4 /dev/sdb1
+# mkfs.ext4 /dev/sdb3
+# mkfs.ext4 /dev/sdb4
+
+Making SWAP partition
+# mkswap /dev/sdb2
+# swapon /dev/sdb2
+
+Mount ROOT partition
+# mount /dev/sdb3 /mnt
+# ls mnt
+lost+found
+# lsblk
+
+Make folders to mount the other drives
+# mkdir /mnt/home
+# mkdir /mnt/boot
+# mount /dev/sdb1 /mnt/boot
+# mount /dev/sdb4 /mnt/home
+# lsblk
+
+Installing Arch Linux
+pacstrap /mnt base base-devel vim
+
+Making FSTAB file (/etc/fstab)
+# genfstab -U /mnt
+# genfstab -U /mnt >> /mnt/etc/fstab
+# vim /mnt/etc/fstab
+
+Make system bootable
+# arch-chroot /mnt
+# ls
+# vim /etc/fstab
+
+Install Network Manager
+# pacman -S networkmanager
+
+Tell systemd to automatically start Network Manager
+# systemctl enable NetworkManager
+
+Installing GRUB
+# pacman -S grub
+# lsblk
+# grub-install --target=i386-pc /dev/sdb
+# grub-mkconfig -o /boot/grub/grub.cfg
+
+Set ROOT password
+# passwd
+
+Generate locale
+# vim /etc/locale.gen
+Uncomment your locale
+# locale-gen
+ 
+
+
+
+
