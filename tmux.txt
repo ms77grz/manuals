@@ -1,0 +1,22 @@
+tmux new-session -s day1
+
+ctrl b - creates window 0
+ctrl b - creates window 1
+ctrl b % - separates current window
+ctrl b -> jumps to right window 
+ctrl b <- jumps to left window 
+ctrl b " - separates window horizontal
+ctrl b up / down - jumps up and down 
+
+ctrl b d - detach current context
+tmux attach-session -t day1
+
+~/.tmux.conf
+set-option -g prefix C-q
+set -g mouse on
+
+После внесения изменений – tmux необходимо перечитать конфигурацию:
+tmux source-file ~/.tmux.conf
+либо из командной строки самого tmux
+:source-file ~/.tmux.conf"
+

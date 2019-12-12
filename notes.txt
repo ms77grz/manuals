@@ -1,0 +1,2 @@
+1. setup a ssh access on my r2-2d desktop pc for remote work on Arch Linux
+

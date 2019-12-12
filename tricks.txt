@@ -1,0 +1,27 @@
+===
+# history
+1 some comands
+2 etc
+3 ls -l
+
+!3
+ls -l
+===
+run last command
+!!
+===
+run last command ping ya.ru or ls -la
+!ping
+!ls
+===
+if you just ran ls /some/long/path, and you want to cd to it, do
+cd !$
+===
+DELETE all files that are returned by locate
+locate foobar | xargs rm -f
+===
+
+
+
+
+
