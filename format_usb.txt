@@ -1,0 +1,12 @@
+# lsblk
+
+# sudo fdisk /dev/sda
+Create a new empty DOS partition table: o
+Make a new partition: n primary
+Set partition type: hex code b for W95 FAT32
+Write changes: w
+
+# lsblk
+
+sudo mkfs.vfat /dev/sda1
+sudo eject /dev/sda
