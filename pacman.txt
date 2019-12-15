@@ -24,3 +24,21 @@
 Например:
 # sudo apt-get update && apt-get upgrade == pacman -Sy && pacman -Su == pacman -Syu
 
+
+
+
+
+Поиск пакета в официальных репозиториях
+S yay -SS mplayer
+
+Просмотр информации о пакете
+$ yay -Si mplayer
+
+Обновление всех пакетов из AUR и официальнвх репозиториев
+$ yay -Syu
+
+
+
+
+visudo
+%wheel ALL=(ALL) NOPSSWD: ALL

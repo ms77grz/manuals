@@ -1,0 +1,35 @@
+
+# useradd -m -g users -G wheel -s /bin/bash MYUSERNAME
+# passwd MYUSERNAME
+
+# vim /etc/sudousers
+%wheel ALL=(ALL) ALL
+
+# su magax
+
+$ sudo pacman -S xorg xorg-xinit xterm
+
+$ sudo pacman pacman -S vim git
+
+$ git clone https://aur.archlinux.org/yay.git
+$ cd yay
+$ makepkg -si
+
+
+$ sudo pacman -S st dwm dmenu
+$ sudo pacman -S chromium
+
+
+
+
+
+# vim .xinitrc
+exec dwm
+
+
+
+# cd /var/log
+# vim Xorg.0.log
+
+
+pkill X

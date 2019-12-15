@@ -27,3 +27,4 @@ delete all lines from current line to the end ot the file - dG
 
 Enter to visual block mode <C-v>
 
+Paste ° - <C-v> u 00b0

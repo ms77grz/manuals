@@ -1,0 +1,18 @@
++	zoom in
+-	zoom out
+=	100% zoom
+h H	left
+l L	right
+j J	up
+k K	down
+e	fit to width
+E	fit ti height
+> <	rotate 90°
+|	invert horizontal
+_	invert vertical
+<C-space>	play gif or svix -a image.gif
+sxiv *.png	opens multiple images and you can navigate by pressing n and p
+sxiv -t *.png	opens with thumbnails
+sxiv =ft *.png	opens in full mode
+ls *.png | sxi	-tio	then select images pressing m will return selected names in terminal
+
