@@ -1,2 +1,7 @@
 1. setup a ssh access on my r2-2d desktop pc for remote work on Arch Linux
 
+2. usb auto soft
+
+3. wifi soft
+
+4. drivers for note

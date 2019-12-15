@@ -1,0 +1,8 @@
+cd /
+mkdir -p media/usb
+lsblk
+sdb
+-sdb1
+mount /dev/sdb1 /media/usb
+
+umount -R /media/usb

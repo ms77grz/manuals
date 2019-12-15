@@ -21,7 +21,3 @@ DELETE all files that are returned by locate
 locate foobar | xargs rm -f
 ===
 
-
-
-
-
