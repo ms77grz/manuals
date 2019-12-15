@@ -12,19 +12,27 @@ Shift + V to select line
 Install gvim to copy to clipboard
 Now we can copy to + register
 
-
-How to setup vim to use clipboard on Fedora
-» Jan 19, 2019 ‐ vim, fedora,
-Install vimx: sudo dnf install -y vim-X11
-Add set clipboard=unnamedplus to your .vimrc
-Add alias vim=vimx to your .bashrc or .zshrc. This is important because vim binary isn’t built with +clipboard support.
-To use mouse set set mouse=a in your .vimrc
-
 go to beginning of line - ^
 go to end of line - $
 delete everything from current line to the top of the file - dgg
 delete all lines from current line to the end ot the file - dG
 
 Enter to visual block mode <C-v>
-
 Paste ° - <C-v> u 00b0
+
+
+Multiline editing
+line one
+line two
+line three
+
+Put the cursor at the beginning "gg"
+Press <C-v> then "G"
+Press I" <Esc>
+
+Result is:
+# line one
+# line two
+# line three
+
+

@@ -29,7 +29,7 @@
 
 
 Поиск пакета в официальных репозиториях
-S yay -SS mplayer
+S yay -Ss mplayer
 
 Просмотр информации о пакете
 $ yay -Si mplayer
@@ -40,5 +40,7 @@ $ yay -Syu
 
 
 
-visudo
-%wheel ALL=(ALL) NOPSSWD: ALL
+
+
+
+# pacman -Ql terminus-font

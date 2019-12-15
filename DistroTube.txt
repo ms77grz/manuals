@@ -88,12 +88,6 @@ ip link set eth1 up
 ip add show
 ip route show
 
-# useradd -m -g users -G wheel -s /bin/bash MYUSERNAME
-# useradd -m -G additional_groups -s login_shell username
-
-# useradd -m archie
-# passwd archie
-
 wget https://terminalroot.com.br/pos-arch.in
 chmod +x pos-arch.in
 ./pos-arch.in -h
