@@ -1,0 +1,29 @@
+##### 1 - Introduction
+$ cat /etc/shells
+$ which bash
+
+touch hello.sh
+ls -la
+-rw-r--r-- 1 magax magax   48 дек 18 22:01 hello.sh
+
+#! /bin/bash
+echo "Hello World"
+
+./hello.sh
+bash: ./hello.sh: Permission denied
+
+chmod +x hello.sh
+ls -la
+-rwxr-xr-x 1 magax magax   33 дек 18 22:11 hello.sh
+
+./hello.sh
+Hello World!
+
+#### 2 - Using Variables and Comments
+system variables are difined by your OS and they are in capital case
+user variables are difined by you and they are in lower case
+
+#### 3 - Read User Input
+
+#### 4 - Pass Arguments to a Bash-Script
+
