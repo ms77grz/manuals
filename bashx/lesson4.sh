@@ -1,5 +1,5 @@
 #! /bin/bash
-
+# ./lesson4.sh max mix mux
 echo $1 $2 $3 ' > echo $1 $2 $3'
 echo $1 $2 $3 " > echo $1 $2 $3"
 echo $0 $1 $2 $3 " > echo $1 $2 $3"

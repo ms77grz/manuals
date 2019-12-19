@@ -37,3 +37,25 @@ then
     statement
 fi
 
+integer comparison
+string comparison
+
+#### 6 - File test operators
+-e # is file excists
+-f # is file regular and excists
+-d # is directory excists
+-c # is character special file excists
+-b # is block special file excists
+-s # checks whether file empty or not
+-r # read permissions
+-w # write permissions
+-x # execute permissions
+
+cat > test
+I will write something here
+<C-d>
+
+#### 7 - How to append output to the end of text file
+
+#### 8 - Logical 'AND' Operator
+https://youtu.be/zWVV31NYi1U?t=4475

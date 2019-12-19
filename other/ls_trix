@@ -1,4 +1,5 @@
 Show only file names
 ls -1
 
-
+Show only dirs
+ls -d */

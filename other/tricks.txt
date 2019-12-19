@@ -20,4 +20,7 @@ cd !$
 DELETE all files that are returned by locate
 locate foobar | xargs rm -f
 ===
-
+Узнать информацию о файле устройства можно с помощью команд file и ls.
+===
+chmod -w file - removes write permissions
+chmod +w file - adds write permissions
