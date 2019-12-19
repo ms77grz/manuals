@@ -1,0 +1,7 @@
+curl
+Standard curl has an ability to connect to a TFTP server and upload a file via:
+
+$ curl -T FILE tftp://HOST
+Download a file:
+
+$ curl -o DESTINATION tftp://HOST/file
