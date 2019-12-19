@@ -27,3 +27,13 @@ user variables are difined by you and they are in lower case
 
 #### 4 - Pass Arguments to a Bash-Script
 
+#### 5 - If Statement
+if then
+if then else
+if elif else
+
+if [condition]
+then
+    statement
+fi
+
