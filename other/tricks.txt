@@ -24,3 +24,6 @@ locate foobar | xargs rm -f
 ===
 chmod -w file - removes write permissions
 chmod +w file - adds write permissions
+===
+Show partitions in fstab
+cat /etc/fstab
