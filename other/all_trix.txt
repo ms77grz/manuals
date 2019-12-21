@@ -31,3 +31,50 @@ cat /etc/fstab
 Show current terminal emulator
 echo $TERM
 ===
+==> WARNING: Possibly missing firmware for module: wd719x
+==> WARNING: Possibly missing firmware for module: aic94xx
+
+Problem
+
+In Arch Linux mkinitcpio -p linux
+
+shows
+
+Possibly missing firmware for module: aic94xx
+ Possibly missing firmware for module: wd719x
+
+Solve
+
+git clone https://aur.archlinux.org/aic94xx-firmware.git
+cd aic94xx-firmware
+makepkg -sri
+
+git clone https://aur.archlinux.org/wd719x-firmware.git
+cd wd719x-firmware
+makepkg -sri
+
+and then mkinitcpio -p linux again.
+Reference
+
+https://wiki.archlinux.org/index.php/Mkinitcpio
+============================================================================
+
+Помогла переустановка GRUB (не знаю как это связано)
+
+    Короче, переустановил grub
+
+    # pacman -Rnds grub
+    # pacman -S grub
+    # grub-mkconfig -o /boot/grub/grub.cfg
+    # grub-install /dev/sda
+
+    - и всё сразу исправилось: и Emergency Mode больше не появляется, и все диски автомонтируются
+
+
+Попробуйте проделать описанное, только раздел свой выбирайте /dev/sdX 
+
+============================================================================
+locate doesn't work
+sudo pacman -S mlocate
+sudo updatedb
+===
