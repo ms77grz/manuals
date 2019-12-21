@@ -64,3 +64,15 @@ I will write something here
 #### 10 - Perform arithmetic operations
 
 #### 11 - Floating point math operations in bash | bc Commands
+bc stands for bash calculator
+
+#### 12 - The case statement
+case expression in
+    pattern1 )
+        statements ;;
+    pattern2 )
+        statements ;;
+    ...
+esac
+
+#### 13 - The case statement Example

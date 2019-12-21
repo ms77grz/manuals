@@ -27,3 +27,7 @@ chmod +w file - adds write permissions
 ===
 Show partitions in fstab
 cat /etc/fstab
+===
+Show current terminal emulator
+echo $TERM
+===
