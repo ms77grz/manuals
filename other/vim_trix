@@ -36,3 +36,6 @@ Result is:
 # line three
 
 
+vim .vimrc
+set number
+

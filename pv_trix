@@ -1,0 +1,18 @@
+pv Command syntax
+The syntax is
+
+pv filename
+pv filename > /path/to/output
+pv options filename | command1
+pv options filename | command1 > output.file
+pv filename | command1
+command1 | pv | command2
+pv -options input.file | command1 | pv -options > output.file
+
+pv command Examples
+In this example copy a file called origin-cdn.cyberciti.org_access.log to /tmp/origin-cdn-access.log and show progress:
+# pv origin-cdn.cyberciti.org_access.log > /tmp/origin-cdn-access.log
+
+OR just send it to /dev/null:
+# pv origin-cdn.cyberciti.org_access.log > /dev/null
+

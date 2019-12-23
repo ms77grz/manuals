@@ -1,0 +1,6 @@
+$ while [ 1 ]; do echo "test" ; sleep 1;done
+$ while [ 1 ]; do echo "test" ; sleep 1;done | pv
+$ while [ 1 ]; do echo "test" ; sleep 1;done | pv > /dev/null
+$ clear; while [ 1 ]; do echo "test" ; sleep 1;done | pv > /dev/null
+$ clear; echo "Progress Active"; while [ 1 ]; do echo "test" ; sleep 1;done | pv > /dev/null
+

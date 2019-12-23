@@ -41,7 +41,7 @@ In Arch Linux mkinitcpio -p linux
 shows
 
 Possibly missing firmware for module: aic94xx
- Possibly missing firmware for module: wd719x
+Possibly missing firmware for module: wd719x
 
 Solve
 
@@ -78,3 +78,21 @@ locate doesn't work
 sudo pacman -S mlocate
 sudo updatedb
 ===
+echo some text > afile.txt
+echo more text >> afile.txt
+cat afile.txt
+some text
+more text
+
+===
+
+
+
+
+apropos firewall
+
+duno!!!
+
+netcat -z -n -v 198.51.100.0 1-1000 2>&1 | grep succeeded
+
+

@@ -1,0 +1,106 @@
+show network interfaces
+$ netstat -i
+
+show routing table
+$ route -n
+
+more statistics
+$ netstat -s | less
+
+active tcp connections
+$ netstat -t -n
+
+
+show dns information about ip
+$nslookup 188.0.185.16
+
+
+#####
+Connect to a wireless network using command line nmcli
+$ systemctl status NetworkManager
+
+# nmcli radio
+WIFI-HW  WIFI     WWAN-HW  WWAN    
+enabled  enabled  enabled  enabled 
+# nmcli device
+DEVICE  TYPE      STATE         CONNECTION 
+wlan0   wifi      disconnected  --         
+eth0    ethernet  unavailable   --         
+lo      loopback  unmanaged     --         
+
+# nmcli device wifi rescan
+# nmcli device wifi list
+# nmcli device wifi connect SSID-Name password wireless-password
+
+if you don’t wan’t your password to be stored in the command line history use the –ask parameter like so:
+
+# nmcli –ask device wifi connect SSID-Name password wireless-password
+
+#####
+#####
+netcat [options] host port
+nc -znv 127.0.0.1 1-1000
+127.0.0.1 631 (ipp) open
+
+
+Port scanning
+nc -zv host.example.com 20-30
+Connection to host.example.com 22 port [tcp/ssh] succeeded!
+Connection to host.example.com 25 port [tcp/smtp] succeeded!
+
+However, your scan will go much faster if you know the IP address that you need. You can then use the -n flag to specify that you do not need to resolve the IP address using DNS:
+
+netcat -z -n -v 198.51.100.0 1-1000
+
+
+
+You can also specify a list of ports to scan, for example:
+nc -zv host.example.com 80 20 22
+nc: connect to host.example.com 80 (tcp) failed: Connection refused 
+nc: connect to host.example.com 20 (tcp) failed: Connection refused 
+Connection to host.example.com port [tcp/ssh] succeeded! 
+
+
+
+
+#####
+#####
+
+
+boot time and other statistics
+$ systemd-analyze
+$ systemd-analyze blame
+
+
+screen
+neofetch
+
+
+
+
+===
+yay -S dwm
+vim .xinitrc
+exec dwm
+
+vim .bashrc
+at the end of the file
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+===
+vim .bashrc-personal
+alias search='pacman -Ss'
+alias orph='sudo pacman -Rns $(pacman -Qqtd)'
+
+
+
+
+
+
+radio stations:
+http://eteris.startfm.lt/startfm.ogg
+
+ports:
+winbox   8291
+
+urls:
+https://www.computerhope.com/unix/nc.htm
