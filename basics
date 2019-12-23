@@ -1,0 +1,38 @@
+touch - creates a file or changes its date
+cp - copy a file
+mv - move or rename a file
+rm - delete a file
+mkdir - creates a directory
+rm -r - removes files and directories
+rmdir - removes empty directories
+
+example:
+touch file1 file2 file3
+mkdir -p dir1 dir2 dir3
+mkdir Junk
+mv dir* Junk
+mv file* Junk
+cd Junk
+rm * - will delete all files
+rmdir * - will delete all directories
+
+cat file
+cat >> file
+ctrl+d
+cat file
+
+echo -e "line1\nline2\n" > file2
+cat file2
+
+cat file1 file2 > file3
+cat file3
+
+more file - reads a file
+less file - do literally the same stuff and more :-)
+
+history | less
+
+ls -la / > lsout.txt
+less lsout
+
+sudo -s preferd than sudo su
