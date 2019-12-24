@@ -1,0 +1,6 @@
+#
+# ~/.bashrc-personal
+#
+
+alias addalias="vim ~/.bashrc-personal"
+alias editsxiv="vim ~/.config/sxiv/exec/key-handler"
