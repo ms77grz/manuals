@@ -1,0 +1,5 @@
+cd ~
+git clone https://github.com/xkbmon/xkbmon.git
+cd xkbmon
+make
+sudo mv xkbmon /usr/local/bin
