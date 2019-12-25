@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 vehicle=$1
 

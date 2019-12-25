@@ -76,3 +76,15 @@ case expression in
 esac
 
 #### 13 - The case statement Example
+
+#### 14 - Array variables
+
+#### 15 - WHILE Loops
+while [ condition ]
+do
+    command1
+    command2
+    command3
+done
+
+#### 16 - using sleep and open terminal with WHILE Loops

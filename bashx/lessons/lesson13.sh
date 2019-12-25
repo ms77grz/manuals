@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 echo -e "Enter some character : \c"
 read value
