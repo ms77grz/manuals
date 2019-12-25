@@ -88,3 +88,11 @@ do
 done
 
 #### 16 - using sleep and open terminal with WHILE Loops
+
+#### 17 - Read a file content in Bash
+input redirection
+using pipes
+using ifs
+
+#### 18 - UNTIL loop
+
