@@ -1,0 +1,18 @@
+<keybind key="W-n">
+    <action name="Execute">
+        <command>xfce4-notes</command>
+    </action>
+</keybind>
+
+<keybind key="W-z">
+    <action name="ShowMenu">
+        <menu>root-menu</menu>
+    </action>
+</keybind>
+
+<keybind key="A-c">
+    <action name="Execute">
+        <command>galculator</command>
+    </action>
+</keybind>
+

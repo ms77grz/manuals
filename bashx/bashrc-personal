@@ -4,3 +4,6 @@
 
 alias addalias="vim ~/.bashrc-personal"
 alias editsxiv="vim ~/.config/sxiv/exec/key-handler"
+alias c="clear"
+alias systemctlenabled="systemctl list-unit-files --state=enabled --no-pager"
+alias bashrc-personal="source ~/.bashrc-personal"

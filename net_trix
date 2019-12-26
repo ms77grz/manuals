@@ -10,10 +10,28 @@ $ netstat -s | less
 active tcp connections
 $ netstat -t -n
 
-
+### DNS ###
 show dns information about ip
 $nslookup 188.0.185.16
 
+show dns used by system
+$ cat /etc/resolve.conf
+
+$ nmcli device 
+DEVICE          TYPE      STATE         CONNECTION 
+wlp2s0          wifi      connected     Python 1   
+p2p-dev-wlp2s0  wifi-p2p  disconnected  --         
+enp3s0          ethernet  unavailable   --         
+lo              loopback  unmanaged     --         
+$ nmcli -t -f IP4
+IP4,              IP4-CONNECTIVITY  
+$ nmcli -t -f IP4.DNS device show wlp2s0 
+IP4.DNS[1]:192.168.0.1
+
+$ nmcli -t -f IP4.DNS connection show Python\ 1 
+IP4.DNS[1]:192.168.0.1
+
+nmcli device show wlp2s0
 
 #####
 Connect to a wireless network using command line nmcli
@@ -104,3 +122,8 @@ winbox   8291
 
 urls:
 https://www.computerhope.com/unix/nc.htm
+
+
+resolve.conf
+nameserver 8.8.8.8
+nameserver 8.8.4.4
