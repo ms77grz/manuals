@@ -36,3 +36,17 @@ ls -la / > lsout.txt
 less lsout
 
 sudo -s preferd than sudo su
+
+echo $0
+/bin/bash
+
+diff file1 file1
+diff <(pacman -Q) file2
+diff <(pacman -Q) <(pacman -Qn)
+
+ls -l /bin/sh
+lrwxrwxrwx 1 root root 4 ноя 13 20:31 /bin/sh -> bash
+
+export BROWSER="firefox"
+echo $BROWSER
+[ "$BROWSER" = "firefox" ] && echo "It's $BROWSER"

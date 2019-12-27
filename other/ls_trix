@@ -3,3 +3,6 @@ ls -1
 
 Show only dirs
 ls -d */
+
+Show file system
+df -T
