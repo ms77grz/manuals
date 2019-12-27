@@ -138,11 +138,34 @@ do
     command3
 done
 
-#### - use FOR loop to execute commands
+#### 20 - use FOR loop to execute commands
 
 for command in
 do
     echo $command
 done
 
+#### 21 - Select loop
 
+select varName in list
+do
+    command1
+    command2
+    ...
+    ...
+    commandN
+done
+
+#### 22 - Break and continue
+
+#### 23 - Functions
+
+function name() {
+    Commands
+}
+
+name () {
+    Commands
+}
+
+#### 24 - Local variables
