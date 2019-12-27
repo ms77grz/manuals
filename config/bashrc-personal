@@ -1,0 +1,11 @@
+#
+# ~/.bashrc-personal
+#
+
+alias addalias="vim ~/.bashrc-personal"
+alias editsxiv="vim ~/.config/sxiv/exec/key-handler"
+alias c="clear"
+alias p="ping -c 2 -n"
+alias systemctlenabled="systemctl list-unit-files --state=enabled --no-pager"
+alias bashrc-personal="source ~/.bashrc-personal"
+alias weather="curl wttr.in"
