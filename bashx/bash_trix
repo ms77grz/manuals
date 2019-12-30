@@ -169,3 +169,14 @@ name () {
 }
 
 #### 24 - Local variables
+
+#### 25 - Function Example
+
+#### 26 - Readonly command
+
+#### 27 - Signals and Traps
+SIGKILL - ^C - interrupt signal
+SIGTSTP - ^Z - suspend signal
+
+kill -9  pid_name (SIGKILL)
+man 7 signal
