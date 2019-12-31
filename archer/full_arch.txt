@@ -1,0 +1,207 @@
+#########################################################################
+
+####################### SET THE KEYBOARD LAYOUT #########################
+The default console keymap is US and maybe you do not have to do anything
+# localectl list-keymaps | less
+# localectl list-keymaps | grep -i search_term
+# find /usr/share/kbd/keymaps/ -type f | more
+To choose other keyboard layout for example Belgian azerty keyboard
+# loadkeys be-latin1
+To change the font
+# pacman -S terminus-font && setfont ter-v16n
+#########################################################################
+
+######################### VERIFY THE BOOT MODE ##########################
+# ls /sys/firmware/efi
+# efivar -l
+#########################################################################
+
+###### CONNECT TO THE INTERNET AND RETRIEVE THE LATEST MIRROR LIST ######
+# ping -c 4 google.com
+# pacman -Sy
+# pacman -Ss reflector
+# ^Ss^S
+# cp -vf /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+# reflector -c "Russia" -f 5 -p https --save /etc/pacman.d/mirrorlist
+#########################################################################
+
+######################## UPDATE THE SYSTEM CLOCK ########################
+# timedatectl set-ntp true
+# timedatectl status
+#########################################################################
+
+######################### PARTITION THE DISKS ###########################
+
+    EFI System partition /dev/sda1 with 512MB, FAT32 format
+    Swap partition /dev/sda2 with 2XRAM recommended size, swap on
+    Root partition /dev/sda3 with at least 20GB or the rest of the space in ext4 format
+    Home partition /dev/sda4 rest of the space in ext4 format
+
+# lsblk
+# dmesg | grep sda
+# cat /proc/partitions
+
+# gdisk /dev/sda
+
+Create a new empty GUID partition table (GPT)
+Command: o
+Proceed?:y
+
+Add a new partition (EFI) 
+Command:n
+Partition number:Enter
+First sector:Enter
+Last sector:+512MB
+Hex code or GUID:EF00
+
+Add a new partition (Swap) 
+Command:n
+Partition number:Enter
+First sector:Enter
+Last sector:+8192MB
+Hex code or GUID:8200
+
+Add a new partition (Root)
+Command:n
+Partition number:Enter
+First sector:Enter
+Last sector:+20480MB
+Hex code or GUID:8304
+
+Add a new partition (Home)
+Command:n
+Partition number:Enter
+First sector:Enter
+Last sector:Enter
+Hex code or GUID:8302
+
+Command:w
+Do you want to proceed?:y
+#########################################################################
+Legacy MBR SECTION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#########################################################################
+
+######################## FORMAT THE PARTITIONS ##########################
+# gdisk -l /dev/sda
+# lsblk -f
+# mkfs.vfat /dev/sda1 or mkfs.fat -F32 /dev/sda1
+# mkswap /dev/sda2
+# swapon /dev/sda2
+# mkfs.ext4 /dev/sda3
+# mkfs.ext4 /dev/sda4
+#########################################################################
+
+####################### MOUNT THE FILE SYSTEMS ##########################
+# mount /dev/sda3 /mnt
+# mkdir /mnt/boot
+# mount /dev/sda1 /mnt/boot
+# mkdir /mnt/home
+# mount /dev/sda4 /mnt/home
+#########################################################################
+
+################ INSTALL THE BASE AND BASE-DEVEL PACKAGES ###############
+# pacstrap /mnt base base-devel linux linux-firmware
+#########################################################################
+
+########################## CHROOT NEOVIM DHCPCD #########################
+# arch-chroot /mnt
+# ls
+# pacman -S neovim
+# nvim /etc/pacman.conf
+Color
+# pacman -S dhcpcd
+# systemctl enable dhcpcd
+#########################################################################
+
+########################## UEFI LOADER SECTION ##########################
+# bootctl install
+# nvim /boot/loader/loader.conf
+default arch
+timeout 4
+
+# nvim /boot/loader/entries/arch.conf
+title Archlinux
+linux /vmlinuz-linux
+initrd /initramfs-linux.img
+options root=
+:r !blkid
+options root=PARTUUID=18c1b001-0912-48a1-86dd-ddfea0098c6a rw
+:x
+######################### LEGACY LOADER SECTION #########################
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#########################################################################
+
+################################ TIME ZONE ##############################
+# ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+# hwclock --systohc
+#########################################################################
+
+############################# LOCALIZATION ##############################
+# nvim /etc/locale.gen
+en_US.UTF-8 UTF-8
+ru_RU.UTF-8 UTF-8
+# locale-gen
+
+# echo LANG=en_US.UTF-8 > /etc/locale.conf
+# echo KEYMAP=us > /etc/vconsole.conf
+#########################################################################
+
+################################ HOSTNAME ###############################
+# echo nanorobot > /etc/hostname
+# nvim /etc/hosts (Use the TAB to align them.)
+127.0.0.1    localhost
+::1          localhost
+127.0.1.1    nanorobot.localdomain    nanorobot
+#########################################################################
+
+######################### NETWORK CONFIGURATION #########################
+Before disable dhcpcd
+pacman -S networkmanager
+systemctl enable NetworkManager
+#########################################################################
+
+############################# ROOT PASSWORD #############################
+# passwd
+#########################################################################
+
+############################### REBOOT ##################################
+# exit
+# umount -R /mnt
+# reboot
+#########################################################################
+
+
+
+
+vim /etc/sudousers
+one of two
+%wheel ALL=(ALL) ALL
+%wheel ALL=(ALL) NOPSSWD: ALL
+#########################################################################
+# useradd -m -g users -G wheel -s /bin/bash MYUSERNAME
+# passwd MYUSERNAME
+
+
+POST INSTALATION
+#########################################################################
+$ sudo pacman -S xorg xorg-xinit [xterm]
+#########################################################################
+$ sudo pacman pacman -S git
+$ git clone https://aur.archlinux.org/yay.git
+$ cd yay
+$ makepkg -si
+#########################################################################
+$ yay -S dwm [dmenu] [st]
+$ sudo pacman -S chromium
+#########################################################################
+# vim .xinitrc
+exec dwm
+#########################################################################
+
+
+
+
+# cd /var/log
+# vim Xorg.0.log
+
+pkill X
