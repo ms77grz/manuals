@@ -1,0 +1,109 @@
+#################################
+$ sudo pacman -S xorg-server
+$ sudo pacman -S lightdm lightdm-gtk-greeter
+$ sudo pacman -S openbox obconf
+$ sudo pacman -S pcmanfm # PCManFM is a free file manager application and the standard file manager of LXDE.
+$ sudo pacman -S tint2
+$ sudo pacman -S xterm termite
+$ sudo pacman -S nitrogen
+$ sudo pacman -S geany
+$ sudo pacman -S gnome-backgrounds
+
+$ sudo systemctl enable lightdm.service
+$ sudo reboot
+##################################
+Terminals -> xterm
+$ tint2
+##################################
+
+####### WALLPAPER NITROGEN #######
+Terminals -> xterm
+$ nitrogen
+Preferences -> Directories -> Add /usr/share/backgrounds/gnome SELECT -> OK
+Then select any of wallpapers, Automatic change to Scaled and APPLY it, close nitrogen
+##################################
+
+######### OPENBOX AUTOSTART ######
+vim ~/.config/openbox/autostart
+
+tint2 &
+nitrogen --restore &
+
+:x
+logout and log back in
+##################################
+
+#### MENUMAKER ###################
+$ sudo pacman -S menumaker
+$ mmaker openbox -vf -t xterm
+System -> Reconfigure Openbox or $ openbox --restart
+##################################
+
+######### UNZIP ##################
+$ sudo pacman -S unzip
+##################################
+
+EDITOR=nano visudo
+EDITOR=vim visudo
+
+sudo pacman -S virtualbox-guest-utils
+##################################
+
+######## OPENBOX RECONFIGURE #####
+https://gitlab.com/dwt1/dotfiles/tree/master/.config/openbox
+download zip file
+$pacman -S xarchiver
+extract archive
+copy rc.xml pipemenus into ~/.config/openbox/
+$ openbox --reconfigure
+##################################
+
+######## TINT2 RECONFIGURE #######
+https://gitlab.com/dwt1/dotfiles/tree/master/.config/tint2
+download zip file
+extract archive
+copy launchers tint2rc into ~/.config/tint2/
+logout and log back in
+##################################
+
+######### OPENBOX DARK-THEME #####
+https://gitlab.com/dwt1/dt-dark-theme
+download zip file
+extract archive
+$ sudo pcmanfm
+copy dt-dark-theme-master into /usr/share/themes
+$ sudo pacman -S lxappearance # GTK+ theme switcher
+$ mmaker openbox -vf -t xterm
+$ lxappearance
+select dt-dark-theme Apply Close
+System -> Settings -> Openbox Configuration Manager
+Theme dt-dark-theme Close
+##################################
+
+
+
+
+
+
+Compton - The Window Compositor for Light Desktops
+https://www.youtube.com/watch?v=9IEiqkNsHp0
+##################################
+
+########## PICOM #################
+Picom is a standalone compositor for Xorg, suitable for use with window managers that do not provide compositing.
+$ sudo pacman -S picom
+$ vim ~/.config/openbox/autostart
+picom -b --config ~/.config/picom.conf &
+############ Variety #############
+Variety is an open-source wallpaper changer for Linux
+$ pacman -S variety
+
+######## obmenu-generator delete manually some items in menu #####
+desktop_files_paths => [
+    '/usr/share/applications',
+    '/usr/local/share/applications',
+    '/usr/share/applications/kde4',
+    "$home_dir/.local/share/applications",
+
+to clear menu delete files in home_dir... .desktop
+###############################

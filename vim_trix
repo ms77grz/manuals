@@ -1,8 +1,9 @@
-Clear last search highlighting
+################## Clear last search highlighting ###################
 :noh
+#####################################################################
 
-Copy and paste
-Shift + V to select line
+########################## Copy and paste ###########################
+Shift + v to select line
 "ay - to copy selected line to register a
 "ap - to paste it
 
@@ -11,6 +12,7 @@ Shift + V to select line
 
 Install gvim to copy to clipboard
 Now we can copy to + register
+#####################################################################
 
 go to beginning of line - ^
 go to end of line - $
@@ -21,7 +23,7 @@ Enter to visual block mode <C-v>
 Paste ° - <C-v> u 00b0
 
 
-Multiline editing
+########################## Multiline editing ########################
 line one
 line two
 line three
@@ -34,7 +36,7 @@ Result is:
 # line one
 # line two
 # line three
-
+######################################################################
 
 vim .vimrc
 set number

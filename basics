@@ -50,3 +50,15 @@ lrwxrwxrwx 1 root root 4 ноя 13 20:31 /bin/sh -> bash
 export BROWSER="firefox"
 echo $BROWSER
 [ "$BROWSER" = "firefox" ] && echo "It's $BROWSER"
+
+find some text in files
+grep -Rn "xfce4-session-logout" /
+    i stands for ignore case (optional in your case).
+    R stands for recursive.
+    n print line number with output line.
+    l stands for "show the file name, not the result itself".
+    w match only whole words.
+    / stands for starting at the root of your machine.
+
+OR
+ack "some text to find"

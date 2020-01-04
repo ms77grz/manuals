@@ -1,0 +1,430 @@
+#########################################################################
+PHASE ONE
+####################### SET THE KEYBOARD LAYOUT #########################
+The default console keymap is US and maybe you do not have to do anything
+# localectl list-keymaps | less
+# localectl list-keymaps | grep -i search_term
+# find /usr/share/kbd/keymaps/ -type f | more
+To choose other keyboard layout for example Belgian azerty keyboard
+# loadkeys be-latin1
+To change the font
+# pacman -S terminus-font && setfont ter-v16n
+#########################################################################
+
+######################### VERIFY THE BOOT MODE ##########################
+# ls /sys/firmware/efi
+# efivar -l
+#########################################################################
+
+###### CONNECT TO THE INTERNET AND RETRIEVE THE LATEST MIRROR LIST ######
+# ping -c 4 google.com
+# pacman -Sy
+# pacman -S reflector
+# cp -vf /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+# reflector -l 50 -f 50 -p https --verbose --sort rate --save /etc/pacman.d/mirrorlist
+# pacman -Syy
+#########################################################################
+
+######################## UPDATE THE SYSTEM CLOCK ########################
+# timedatectl set-ntp true
+# timedatectl status
+#########################################################################
+
+####################### PARTITION THE DISKS UEFI ########################
+
+    EFI System partition /dev/sda1 with 512MB, FAT32 format
+    Swap partition /dev/sda2 with 2XRAM recommended size, swap on
+    Root partition /dev/sda3 with at least 20GB in ext4 format
+    Home partition /dev/sda4 rest of the space in ext4 format
+
+# lsblk
+# dmesg | grep sda
+# cat /proc/partitions
+# gdisk -l /dev/sda
+
+# gdisk /dev/sda
+
+Create a new empty GUID partition table (GPT)
+Command: o
+Proceed?:y
+
+Add a new partition (EFI) 
+Command:n
+Partition number:Enter
+First sector:Enter
+Last sector:+512MB
+Hex code or GUID:EF00
+
+Add a new partition (Swap) 
+Command:n
+Partition number:Enter
+First sector:Enter
+Last sector:+8192MB
+Hex code or GUID:8200
+
+Add a new partition (Root)
+Command:n
+Partition number:Enter
+First sector:Enter
+Last sector:+20480MB
+Hex code or GUID:8304
+
+Add a new partition (Home)
+Command:n
+Partition number:Enter
+First sector:Enter
+Last sector:Enter
+Hex code or GUID:8302
+
+Command:w
+Do you want to proceed?:y
+# gdisk -l /dev/sda
+#########################################################################
+
+#################### FORMAT THE PARTITIONS UEFI #########################
+# lsblk
+# mkfs.vfat /dev/sda1 or mkfs.fat -F32 /dev/sda1
+# mkswap /dev/sda2
+# swapon /dev/sda2
+# mkfs.ext4 /dev/sda3
+# mkfs.ext4 /dev/sda4
+# lsblk -f
+#########################################################################
+
+##################### MOUNT THE FILE SYSTEMS UEFI #######################
+# mount /dev/sda3 /mnt
+# mkdir /mnt/boot
+# mount /dev/sda1 /mnt/boot
+# mkdir /mnt/home
+# mount /dev/sda4 /mnt/home
+#########################################################################
+
+####################### PARTITION THE DISKS BIOS ########################
+    Root partition /dev/sda1 with 18GB, EXT4 format, primary, boot
+    Swap partition /dev/sda2 with 2XRAM recommended size, primary, swap on
+
+# lsblk
+# dmesg | grep sda
+# cat /proc/partitions
+# fdisk -l
+
+# fdisk /dev/sda
+Create a new empty DOS partition table
+Command: o
+
+Add a new partition (Root) 
+Command:n
+Partition type: Enter
+Partition number:Enter
+First sector:Enter
+Last sector:+18G
+
+Command:a
+The bootable flag on partition 1 is enabled now
+
+Add a new partition (Swap) 
+Command:n
+Partition type: Enter
+Partition number:Enter
+First sector:Enter
+Last sector:Enter
+
+Change a partition type (Swap)
+Command:t
+Partition number:Enter
+Hex code: 82
+
+Command:w
+The partition table has been altered
+# fdisk -l
+#########################################################################
+
+#################### FORMAT THE PARTITIONS BIOS #########################
+# lsblk
+# mkfs.ext4 /dev/sda1
+# mkswap /dev/sda2
+# swapon /dev/sda2
+#########################################################################
+
+##################### MOUNT THE FILE SYSTEMS BIOS #######################
+# mount /dev/sda1 /mnt
+#########################################################################
+
+################ INSTALL THE BASE AND BASE-DEVEL PACKAGES ###############
+# pacstrap /mnt base base-devel linux linux-firmware
+#########################################################################
+
+############################## FSTAB BIOS ###############################
+# genfstab -U /mnt >> /mnt/etc/fstab
+cat /mnt/etc/fstab
+########################## CHROOT VIM DHCPCD ############################
+# arch-chroot /mnt
+# ls
+# pacman -S vim
+# vim /etc/pacman.conf
+Color
+# pacman -S dhcpcd
+# systemctl enable dhcpcd
+#########################################################################
+
+############################ BOOT LOADER UEFI ###########################
+# bootctl install
+# vim /boot/loader/loader.conf
+default arch
+timeout 4
+
+# vim /boot/loader/entries/arch.conf
+title Archlinux
+linux /vmlinuz-linux
+initrd /initramfs-linux.img
+options root=
+:r !blkid
+options root=PARTUUID=18c1b001-0912-48a1-86dd-ddfea0098c6a rw
+:x
+#########################################################################
+
+################################ TIME ZONE ##############################
+# ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+# hwclock --systohc
+#########################################################################
+
+############################# LOCALIZATION ##############################
+# vim /etc/locale.gen
+en_US.UTF-8 UTF-8
+ru_RU.UTF-8 UTF-8
+# locale-gen
+
+# echo LANG=en_US.UTF-8 > /etc/locale.conf
+# echo KEYMAP=us > /etc/vconsole.conf
+#########################################################################
+
+################################ HOSTNAME ###############################
+# echo nanorobot > /etc/hostname
+# vim /etc/hosts (Use the TAB to align them.)
+127.0.0.1    localhost
+::1          localhost
+127.0.1.1    nanorobot.localdomain    nanorobot
+#########################################################################
+
+######################### NETWORK CONFIGURATION #########################
+Before disable dhcpcd
+# pacman -S networkmanager
+# systemctl enable NetworkManager
+#########################################################################
+
+############################# ROOT PASSWORD #############################
+# passwd
+#########################################################################
+
+############################ BOOT LOADER BIOS ###########################
+# pacman -S grub
+# grub-install --target=i386-pc /dev/sda
+# grub-mkconfig -o /boot/grub/grub.cfg
+#########################################################################
+
+############################### REBOOT ##################################
+# exit
+# umount -R /mnt
+# reboot
+#########################################################################
+PHASE TWO
+#########################################################################
+# pacman -Syu
+#########################################################################
+
+######################### MULTILIB REPOSITORY ###########################
+Multilib repositories include applications such as wine and steam.
+If you do not intend to install them you can skip it.
+# vim /etc/pacman.conf
+[multilib]
+include = /etc/pacman.d/mirrorlist
+If you update the system after the changes, you will see an extra line for multilib
+#########################################################################
+
+############################ BASH COMPLETION ############################
+# pacman -S bash-completion
+#########################################################################
+
+########################### PERSONAL ACCOUNT ############################
+# useradd -m -g users -G audio,video,network,wheel,storage,rfkill -s /bin/bash MYUSERNAME
+# useradd -m -g users -G wheel -s /bin/bash MYUSERNAME
+# passwd MYUSERNAME
+# visudo
+# sudo EDITOR=vim visudo
+# vim /etc/sudousers
+%wheel ALL=(ALL) ALL
+Logout from root and log back with your personal account
+$ sudo pacman -Syu
+#########################################################################
+PHASE THREE
+####################### INSTALL DISPLAY SERVER ##########################
+$ sudo pacman -S xorg-server xorg-apps xorg-xinit xterm xorg-drivers
+When we type startx in the terminal we can check if everything has been installed successfully. Type exit  to get out of the session.
+xterm is a fallback terminal if things go bad.
+#########################################################################
+
+########################## GRAPHICS DRIVER ##############################
+The linux kernel can handle many graphical cards so try first without any extra installation.
+ATI – INTEL – NVIDIA
+There is no need to install a driver in virtual box.
+Start on the xorg wiki page find out what driver you need for your hardware.
+$ lspci | grep -e VGA -e 3D
+
+I think it needs some examples of installation ... !!!!!!!!!!!!!!!!!!!!!!
+#########################################################################
+
+###################### INSTALL DISPLAY MANAGER ##########################
+We need to install a display manager or a login manager.
+$ sudo pacman -S lightdm
+$ sudo pacman -S lightdm-gtk-greeter lightdm-gtk-greeter-settings
+$ sudo systemctl enable lightdm.service
+Do not reboot until you have a desktop environment.
+#########################################################################
+
+##################### INSTALL DESKTOP ENVIRONMENT #######################
+$ sudo pacman -S openbox obconf obmenu
+$ sudo pacman -S tint2 # tint2 is a simple, unobtrusive and light panel for Xorg. It can be configured to include a system tray, a task list, a battery monitor and more.
+
+
+#########################################################################
+
+########################### INSTALL SOUND ###############################
+$ sudo pacman -S alsa-utils alsa-plugins alsa-lib alsa-firmware # The Advanced Linux Sound Architecture (ALSA) provides audio and MIDI functionality to the Linux operating system.
+$ sudo pacman -S pulseaudio pulseaudio-alsa # PulseAudio is a general purpose sound server intended to run as a middleware between your applications and your hardware devices, either using ALSA or OSS.
+$ sudo pacman -S pavucontrol # PulseAudio Volume Control
+$ sudo pacman -S gstreamer # GStreamer is a pipeline-based multimedia framework that links together a wide variety of media processing systems to complete complex workflows.
+$ sudo pacman -S gst-plugins-good gst-plugins-bad gst-plugins-base gst-plugins-ugly
+$ sudo pacman -S volumeicon # volume control icon in system tray
+$ sudo pacman -S playerctl # utility to control media players via MPRI
+#########################################################################
+
+############################# PACKAGES ##################################
+$ sudo pacman -S gvim thunar firefox termite youtube-dl mpv rhythmbox
+$ sudo pacman -S expac # List installed packages by date on Arch
+$ sudo pacman -S hwinfo
+
+#########################################################################
+
+
+
+
+
+
+
+
+POST INSTALATION
+#########################################################################
+$ sudo pacman -S xorg xorg-xinit [xterm]
+#########################################################################
+$ sudo pacman pacman -S git
+$ git clone https://aur.archlinux.org/yay.git
+$ cd yay
+$ makepkg -si
+#########################################################################
+$ yay -S dwm [dmenu] [st]
+$ sudo pacman -S chromium
+#########################################################################
+# vim .xinitrc
+exec dwm
+#########################################################################
+
+
+
+
+
+
+########################### GDM INSTALATION ############################
+sudo pacman -S gdm
+sudo systemctl enable gdm.service -f
+reboot
+########################################################################
+
+###################### BACK TO LIGHTDM for example #####################
+sudo systemctl enable lightdm.service -f
+reboot
+########################################################################
+
+
+
+####################### XORG troubleshooting ###########################
+vim /var/log/Xorg.0.log
+pkill X
+########################################################################
+
+###################### SOME QUESTIONS ABOUT ############################
+
+
+systemctl disable lightdm.service
+
+userdel -rf USERNAME
+
+groups
+groups USERNAME
+
+count number of cores:
+$ grep -c ^processor /proc/cpuinfo 
+
+
+$ systemctl get-default 
+graphical.target
+
+sudo systemctl set-default graphical.target
+
+# systemctl enable multi-user.target
+# systemctl set-default multi-user.target
+
+expac --timefmt='%F %T' '%l %n' | sort -n | tail -n 7
+
+
+
+##################### ROFI #################
+as an example only
+<keybind key="C-space">
+    <action name="Execute">
+        <command>rofi -show run -fullscreen -font "Noto Sans 13"</command>
+    </action>
+</keybind>
+
+$ rofi -modi drun -show drun
+drun lists all GUI programs that has .desktop file
+
+$ rofi -modi run -show run
+$ rofi -modi drun,combi -show combi
+$ rofi -modi drun,combi -show drun
+$ echo "" | rofi -dmenu | xargs -I{} xdg-open https://www.google.de/search?q={}
+##############################################
+
+############## MENU SURFRAW ##################
+$ sudo pacman -S surfraw dmenu rofi
+$ git clone https://github.com/TomboFry/menu-surfraw.git
+$ cd menu-surfraw
+$ sudo mv menu-surfraw /usr/local/bin/
+$ vim ~/.config/openbox/rc.xml
+<keybind key="C-space">
+    <action name="Execute">
+        <command>/usr/bin/bash /usr/local/bin/menu-surfraw</command>
+    </action>
+</keybind>
+##############################################
+
+############ AS EXAMPLE COPY TO .CONFIG ######
+Copy the default surfraw config to your .config folder in home:
+cp /etc/xdg/surfraw/conf ~/.config/surfraw/conf
+
+Then edit that new config file:
+nano ~/.config/surfraw/conf
+
+You might see something like:
+
+SURFRAW_graphical_browser=/usr/bin/chromium
+#SURFRAW_text_browser=/usr/bin/links
+SURFRAW_graphical=yes
+
+Comment out the graphical browser line, then uncomment the text browser line, then finally change graphical to "no".
+
+#SURFRAW_graphical_browser=/usr/bin/chromium
+SURFRAW_text_browser=/usr/bin/links
+SURFRAW_graphical=no
+###############################################
+
+feh --bg-center ~/wallpapers/ArchLinux01.jpg

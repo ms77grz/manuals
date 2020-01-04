@@ -1,0 +1,23 @@
+List all available fonts on Linux using the CLI
+
+Open the terminal application. To list all font faces, run:
+$ fc-list
+
+Use the more command as pager or grep command/egrep command to search for fonts:
+$ fc-list | more
+$ fc-list | grep -i "word"
+$ fc-list | grep -i UbuntuMono 
+
+To lists font faces that cover Hindi language:
+$ fc-list :lang=hi
+
+
+Verbose output when listing fonts
+
+Display verbose output of the whole font pattern for each match, or elements if any is provided as follows:
+fc-list -v
+
+fc-list -v | grep -i notosans-regular
+	file: "/usr/share/fonts/noto/NotoSans-Regular.ttf"(s)
+	postscriptname: "NotoSans-Regular"(s)
+
