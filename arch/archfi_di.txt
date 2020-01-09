@@ -1,2 +1,421 @@
 archfi.sf.net/archfi
 archdi.sourceforge.net/archdi
+
+# sh archfi
+
+1 Language
+    English
+2 Set Keyboard Layout
+    us
+3 Editor
+    vim
+    export EDITOR=vim
+
+4 Disk Partitions
+    Auto Partitions (dos)
+        /dev/sda/ 20G
+            /dev/sda1   512M    boot    linux 83
+            /dev/sda2   4G      swap    linux 82
+            /dev/sda3   15.6G   root    linux 83
+
+5 Select Partitions and Install
+    Select boot device:
+        /dev/sda1
+    Select swap device:
+        /dev/sda2
+    Select root device:
+        /dev/sda3
+    Select home device:
+        none    -
+    Format and Mount
+        boot    /dev/sda1   ext4
+        swap    /dev/sda2   swap
+        root    /dev/sda3   ext4
+
+        mount /dev/sda3 /mnt
+        mkdir /mnt/{boot,home}
+        mount /dev/sda1 /mnt/boot
+        swapon /dev/sda2
+
+6 Install Menu
+    Install Arch Linux  pacstrap base kernel
+        linux
+    Install Firmware pacstrap linux-firmare
+    Config Arch Linux
+        Set Computer Name   /etc/hostname
+            echo "mxsh" > /mnt/etc/hostname
+        Set Keyboard Layout /etc/vconsole.conf
+            us
+                echo "KEYMAP=us" > /mnt/etc/vconsole.conf
+        Set Locale /etc/locale.conf, /etc/locale.gen
+            en_US
+                echo "LANG=en_US.UTF-8" > /mnt/etc/locale.conf
+                echo "LC_COLLATE=C" >> /mnt/etc/locale.conf
+                sed -i '/en_US.UTF-8/s/^#//g' /mnt/etc/locale.gen
+                arch-chroot /mnt /root
+                locale-gen
+                exit
+        Set Time /etc/localtime
+            Europe Moscow
+                ln -sf /mnt/usr/share/zoneinfo/Europe/Moscow /mnt/etc/localtime
+                Use UTC hardware clock
+                    arch-root /mnt /root
+                    hwclock --systohc --utc
+                    exit
+        Set Root Password
+            arch-chroot /mnt /root
+            passwd root
+            exit
+        Generate fstab
+            UUID    genfstab -U
+                genfstab -U -p /mnt > /mnt/etc/fstab
+        Bootloader
+            grub
+                install grub    pacstrap grub (efibootmgr, grub-mkconfig)
+                    pacstrap /mnt grub
+                    arch-chroot /mnt /root
+                    mkdir /boot/grub
+                    grub-mkconfig -o /boot/grub/grub.cfg
+                    exit
+                Install bootloader  grub-install
+                    /dev/sda    20G
+                        arch-chroot /mnt /root
+                        grub-install --target=i386-pc --recheck /dev/sda
+                        exit
+        Enable dhcpcd   systemctl enable dhcpcd
+            pacstrap /mnt dhcpcd
+            arch-chroot /mnt /root
+            systemctl enable dhcpcd
+            exit
+#####################################################################################
+archdi
+pacstrap /mnt wget libnewt
+Install and run archdi
+    sourceforge.netrecomended
+        curl -i ...
+    Updates
+        Install pacman-contrib
+            # pacman -S --needed pacman-contrib
+        Install yay
+        Updates Menu
+            Upgrade with yay    yay -Syu
+            Upgrade             pacman -Syu
+            Clean orphan        pacman -Rns $(pacman -Qqtd)
+            Clean cache         pacman -Sc
+
+            Update keyring      pacman -S archlinux-keyring
+            Refresh pacman keys pacman-key --refresh-keys
+            Add GPG key         gpg --recv-keys
+    Install
+        Console
+            Generic
+                nano -
+                vim +
+                vi -
+                pacman-contrib +
+                base-devel +
+                bash-completion +
+                lsof +
+                dmidecode +
+                dialog +
+                linux-firmware +
+                nmon +
+                mc +
+                neofetch +
+                powertop +
+                gpm -
+                liveroot -
+            Compression Tools
+                zip +
+                unzip +
+                unrar +
+                p7zip +
+            Network Tools
+                rsync +
+                traceroute +
+                bind-tools +
+                dnsutils -
+                nmap +
+                netdiscover +
+                speedtest-cli +
+                wavemon -
+                net-tools -
+                dsniff -
+                mitmproxy -
+                sslstrip -
+            Webbrowser
+                elinks -
+                links -
+                lynx -
+            Recovery Tools
+                ddrescue -
+                dd_rescue -
+                partclone -
+    System
+        Kernel
+            linux default
+            linux-lts -
+            linux-zen -
+            linux-hardened -
+        Services
+            networkmanager +
+            openssh +
+            cronie +
+            xdg-user-dirs +
+            numlockon +
+            haveged +
+            intel-ucode +
+            amd-ucode -
+            net-snmp -
+            samba -
+            bluez -
+            blues-libs -
+            syslog-ng -
+            pkgstats -
+            ntp -
+        File System
+            os-prober -
+            snapper -
+            dosfstools +
+            ntfs-3g +
+            btrfs-progs +
+            exfat-utils +
+            gptfdisk +
+            autofs +
+            fuse2 +
+            fuse3 +
+            fuseiso +
+            sshfs -
+            cifs-utils -
+            smbclient -
+            nfs-utils -
+            open-iscsi -
+            glusterfs -
+            hfsprogs -
+            mtpfs -
+            unionfs-fuse -
+            nilfs-utils -
+            gvfs -
+            s3fs-fuse -
+        Sound
+            alsa-utils +
+            alsa-plugins +
+            pulseaudio +
+            pulseaudio-alsa +
+            pulseaudio-bluetooth -
+            pulseaudio-equalizer -
+        Print
+            cups +
+            ghostscript +
+            cups-pdf +
+            hplip -
+            gutenprint -
+            foomatic-db -
+            foomatic-db-engine -
+            foomatic-db-nonfree -
+            foomatic-db-ppds -
+            foomatic-db-gutenprint-ppds -
+            foomatic-db-nonfree-ppds -
+    XOrg
+        GPU Infos
+            VMwae SVGA II Adapter
+        Install
+            xorg-server +
+            xorg-xinit +
+        Fonts
+            Default
+                font-bh-ttf +
+                font-bitstream-speedo +
+                gsfonts +
+                sdl_ttf +
+                ttf-bitstream-vera +
+                ttf-dejvu +
+                ttf-liberation +
+                xorg-fonts-type1 +
+        Input Drivers
+            xf86-input-elographics -
+            xf86-input-evdev -
+            xf86-input-libinput +
+            xf86-input-synaptics -
+            xf86-input-vmmouse -
+            xf86-input-void -
+            xf86-input-wacom -
+        Video Drivers
+            Open Source
+            Proprietary
+                virtualbox-guest-utils +
+                nvidia -
+    Desktop Environment
+        Openbox
+            jgmenu +
+            lxappearance-obconf -
+            lxappearance-obconf-gtk3 +
+            menumaker +
+            obconf +
+            obconf-qt +
+            oblogout +
+            openbox +
+    Display Manager
+        gdm -
+        sddm -
+        lxdm -
+        lightdm-gtk-greeter +
+        slim -
+    Applications
+        Office -
+        Internet +
+            Web Browser
+                firefox +
+            Torrent
+                transmission-gtk -
+                transmission-qt -
+                ktorrent -
+                qbittorrent -
+                deluge -
+                tixati -
+            Email
+                thunderbird -
+                evolution -
+                evolution-bogofilter -
+                evolution-spamassassin -
+                evolution-ews -
+            Multimedia
+                GSTreamer
+                    gst-plugins-base +
+                    gst-plugins-good +
+                    gst-plugins-ugly +
+                    gst-plugins-bad -
+                    gst-libav +
+                Audio Player
+                    clementine -
+                    mixxx -
+                    quodlibet -
+                    elisa -
+                    amarok -
+                    guayadeque -
+                    gmusicbrowser -
+                Video Player
+                    vlc -
+                    smplayer -
+                    smtube -
+                    mpv -
+                    celluloid -
+                Video Tools
+                    avidemux-qt -
+                    simplescreenrecorder -
+                Burner
+                    k3b -
+                    xfburn -
+                    brasero -
+                    gnomebaker -
+            Graphic
+                gimp -
+                inkscape -
+                dia -
+                krita -
+            Dev
+                notepadqq -
+                geany -
+                geany-plugins -
+                code -
+                kdevelop -
+                gource -
+            System
+                gparted -
+                bleachbit -
+                keeppassxc -
+                keeppass -
+                virtualbox -
+                virtualbox-ext-oracle -
+                wine -
+                wine_gecko -
+                wine-mono -
+                zenity -
+                winetricks -
+                q4wine -
+                gdmap -
+                k4dirstat -
+                conky -
+            PacMan GUI
+                octopi -
+                pamac-aur -
+    Config
+        Bash
+        Firewall
+        Accounts
+            Users
+                Add User
+                    username + password
+            Sudoers
+                Add sudoer
+                    username
+        Systemd
+            timedatectl
+                Enable timedatectl set-ntp true
+        XOrg
+            Generate /etc/X11/xorg.conf.d/00-keyboard.conf -
+        Boot
+            initcpio -
+            grub -
+
+
+
+
+                
+                
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+        
+
+
+
+
+
