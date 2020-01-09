@@ -94,5 +94,83 @@ apropos firewall
 duno!!!
 
 netcat -z -n -v 198.51.100.0 1-1000 2>&1 | grep succeeded
+#############################################################
+
+########### DETECT PRESSED KEY NAME ############
+$ xev
+################################################
+
+w - Show who is logged on and what they are doing.
+
+######### DU ###########
+du -h ~/Music/Men\ I\ Trust\ -\ Sad\ Organ-ZoheHcKV7hM.mp3
+2,5M
+
+sudo du -sch ~/*
+s - size of each home directory
+c - total count
+h - human readable format
+
+sudo du -sch --time ~/*
+--time - last updated time
+
+########## SPLIT THEN join ###########
+split -b 100m myImage.iso
+
+split -b 100M void-live-x86_64-musl-20181111.iso void_iso.
+void_iso.aa
+void_iso.ab
+void_iso.ac
+void_iso.ad
+
+split --verbose -b 1m audio.mp3 audio.mp3.
+creating file 'audio.mp3.aa'
+creating file 'audio.mp3.ab'
+creating file 'audio.mp3.ac'
+creating file 'audio.mp3.ad'
+creating file 'audio.mp3.ae'
+creating file 'audio.mp3.af'
+
+cat audio.mp3.a{a..f} > joined.mp3
+
+##################### DATE ###########
+$ date +%D # 01/08/20
+$ date +%X # 22:45:32
+$ date +%T # 22:45:32
+$ date +"%T %A %d %B"
+22:49:47 Среда 08 января
+
+#### test bash file run_backups
+#!/bin/bash
+
+logfile=backups.log
+date +%D >> $logfile
+echo `date +%X` : backups started >> $logfile
+# backup command here
+# for example sleep 5 sec
+sleep 5
+echo `date +%X` : backups complete >> $logfile
+#####
+$ TZ=":America/Los_Angeles" date
+Ср янв  8 12:05:22 PST 2020
+$ TZ=":Europe/Paris" date
+Ср янв  8 21:07:39 CET 2020
+$ date --date="next week fri"
+Пт янв 17 00:00:00 MSK 2020
+#######################################
+
+######### expr ############
+expr 3 + 3 # 6
+expr 5 - 4 # 1
+expr 8 \* 2 # 16
+expr 7 / 3 # 2
+expr 7 % 3 # 1
+
+expr 1 \& 0 # 0
+expr 12 = 12 # 0
+expr $var1 \> $var2 # 1
+expr $var1 \< $var2 # 0
+expr 365 / 7 + 11 \* 2 # 74
+######################################
 
 

@@ -1,0 +1,85 @@
+$ cat text
+10 tiny toes
+this is that
+5 funny 0
+one two three
+tree twice
+
+$ cat text | sed 's/e/E/'
+10 tiny toEs
+this is that
+5 funny 0
+onE two three
+trEe twice
+
+$ sed 's/e/E/' text
+10 tiny toEs
+this is that
+5 funny 0
+onE two three
+trEe twice
+
+$ sed 's/e/E/g' text # all items in line
+10 tiny toEs
+this is that
+5 funny 0
+onE two thrEE
+trEE twicE
+
+$ sed 's/e/E/g' text > new_text
+
+$ sed -i 's/e/E/g' text
+$ cat text
+10 tiny toEs
+this is that
+5 funny 0
+onE two thrEE
+trEE twicE
+$ sed -i 's/E/e/g' text
+====================================================
+$ sed 's/t/ooo/g' text
+10 oooiny ooooes
+ooohis is ooohaooo
+5 funny 0
+one ooowo ooohree
+oooree ooowice
+
+$ sed 's/^t/ooo/g' text
+10 tiny toes
+ooohis is that
+5 funny 0
+one two three
+tree twice
+
+$ sed 's/^th/oooo/g' text
+10 tiny toes
+oooois is that
+5 funny 0
+one two three
+ooooree twice
+
+$ sed 's/t$/oooo/g' text
+10 tiny toes
+this is thaoooo
+5 funny 0
+one two three
+tree twice
+
+$ sed 's/e$/oooo/g' text
+10 tiny toes
+this is that
+5 funny 0
+one two threoooo
+tree twicoooo
+
+$ sed 's/ee$/oooo/g' text
+10 tiny toes
+this is that
+5 funny 0
+one two throooo
+tree twice
+
+
+
+
+sed -i 's/\(^DISTRIB_RELEASE=\).*/\1v19.12.17/' /etc/lsb-release

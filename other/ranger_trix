@@ -1,3 +1,47 @@
 S	opens new shell on the current directory
 <C-d>	it goes back to ranger
 
+########## RENAME A FILE ##########
+cw - |
+a - wallpaper|.jpg
+A - wallpaper.jpg|
+I - |wallpaper.jpg
+###################################
+
+###################################
+space - select
+dD - delete a file
+yy - copy
+dd - cut
+pp - paste
+uv - unselect
+uy - unyank
+V - select (visual) mode
+VG - select all
+cW - bulkrename
+###################################
+
+#### Image Previews ###############
+globall
+ranger --copy-config=all
+$ vim .config/ranger/rc.conf
+set preview_images true
+
+for urxvt
+$ yay -S rxvt-unicode-pixbuf
+$ vim .config/ranger/rc.conf
+set preview_images true
+set preview_images_method urxvt
+set preview_images_method urxvt-full # if you would like the image to fill the whole terminal rather than just the preview pane
+###################################
+
+######### Borders #################
+set draw_borders both
+###################################
+
+###################################
+touch - Insert
+mkdir - F7
+
+for more cool thins
+https://github.com/LukeSmithxyz/voidrice/blob/master/.config/ranger/rc.conf

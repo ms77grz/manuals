@@ -1,0 +1,9 @@
+#!/bin/bash
+
+logfile=backups.log
+date +%D >> $logfile
+echo `date +%X` : backups started >> $logfile
+# backup command here
+# for example sleep 5 sec
+sleep 5
+echo `date +%X` : backups complete >> $logfile

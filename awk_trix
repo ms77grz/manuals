@@ -1,0 +1,29 @@
+#!/bin/bash
+echo one two three four five | awk '{print $3,$4}'
+
+awk '/^st/' /etc/group
+awk '/magax/' /etc/group
+
+awk -F: '{print $1}' /etc/group | head -4
+
+awk -F: '{$3 > 1000}' /etc/group
+
+awk '! /:$/' /etc/group
+
+awk '/NAT/' VBox.log.3
+
+
+########### mr Smith
+- show memory used/total
+free -h --si | awk '/^Mem:/ {print $3 "/" $2}'
+2,1G/3,3G
+- show cpu temp
+sensors -A | awk '/^Package id 0:/ {print $4}'
++42.0°C
+- show most memory intensive process
+ps axch -o cmd,%mem --sort=-%mem | head
+ps axch -o cmd,%mem --sort=-%mem | head -1
+ps axch -o cmd:15,%mem --sort=-%mem | head
+- show most cpu intensive process
+ps axch -o cmd:15,%cpu --sort=-%cpu | head
+#####################
