@@ -284,8 +284,12 @@ Do not reboot until you have a desktop environment.
 ##################### INSTALL DESKTOP ENVIRONMENT #######################
 $ sudo pacman -S openbox obconf
 $ yay -S obmenu3 obmenu-generator
+
 $ mkdir -p ~/.config/openbox
 $ cp -p /etc/xdg/openbox/* ~/.config/openbox
+### or this way
+$ cp -r /etc/xdg/openbox/ ~/.config/
+
 $ sudo pacman -S tint2 # tint2 is a simple, unobtrusive and light panel for Xorg. It can be configured to include a system tray, a task list, a battery monitor and more.
 
 $ obmenu3 # to change menu commands

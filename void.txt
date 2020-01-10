@@ -35,7 +35,7 @@ $ vim ~/.config/openbox/autostart
 tint2 &
 nitrogen --restore
 add to Pictures some images
-open nitrigen, select an image Zoomed Fill or Scaled
+open nitrogen, select an image Zoomed Fill or Scaled
 ############## PANEL ##############
 https://github.com/downthecrop/tint2-theme-collections
 $ git clone https://github.com/addy-dclxvi/tint2-theme-collections ~/.config/tint2 --depth 1
@@ -123,3 +123,94 @@ $ openbox --restart
 	<action name="Close"/>
 </keybind>
 ###################################
+
+######### Another Try #############
+anon/root
+anon
+voidlinux
+S sudo void-installer
+keyboard: us
+network: enters
+source: local
+hostname: hmxsq
+locale: English(USA)
+timezone: Europe/Moscow
+root password: ******************************************
+user account: username username ************************* maybe disk:9
+bootloader: /dev/sda use a graphical terminal for the boot loader
+partition: /dev/sda cfdisk /dev/sda msdos
+	/dev/sda1 * 18G 83 Linux
+	/dev/sda2 	2G  82 Linux/Swap
+filesystems:
+	/dev/sda1 ext4 mount point /
+	/dev/sda2 swap
+install:
+
+reboot
+$ sudo xbps-install -Su
+$ sudo xbps-install -S bash-completion vim
+
+to change mirror for example:
+vim /etc/xbps.d/mirrorlist.conf
+repository=https://mirrors.servercentral.com/voidlinux/current/
+$ sudo xbps-install -Sy
+
+$ sudo xbps-install -Syu
+$ sudo reboot
+
+$ sudo xbps-install -S xorg dbus lightdm-gtk-greeter-settings openbox obconf obmenu obmenu-generator
+tint2 nitrogen Thunar octoxbps gksu xfce4-terminal xdg-utils xdg-user-dirs lxappearance lxtask compton 
+
+optional pcmanfm mc etc...
+$ vim ~/.xinitrc
+exec openbox-session
+$ cd /etc/sv
+$ ls
+$ sudo ln -s /etc/sv/lightdm /var/service/lightdm
+$ sudo ln -s /etc/sv/dbus /var/service/dbus
+
+login in to your openbox session
+$ cp -r /etc/xdg/openbox/ ~/.config/
+$ vim ~/.config/openbox/autostart
+compton -b &
+tint2 &
+nitrogen --restore &
+
+---------- in didn't start working ----------
+$ octoxbps
+theme -> arc-theme paper-gtk-theme paper-icon-theme
+wallpaper -> plasma-workspace-wallpapers
+-------------------------------------------- some probs with gksu, must see later
+$ sudo xbps-install -S arc-theme paper-gtk-theme paper-icon-theme plasma-workspace-wallpapers
+$ obconf
+Arc-Dark
+$ obmenu-generator -p -i
+$ nitrogen
+add wallpapers /usr/share/wallpapers Zoomed Fill
+$ lxappearance # Customize Look And Feel
+Widget Arc-Dark
+Icon Theme Paper
+$ sudo reboot
+
+$ sudo ln -s /usr/bin/xfce4-terminal /bin/xterm
+run terminal Edit Preferences Appearance Background Transparent background 0.80
+run System Tint2 Settings
+	Launcher add File Manager OctoXBPS Task Manager Terminal Emulator
+	Taskbar Show desktop name - off
+
+
+$ xdg-user-dirs-update
+$ sudo xbps-install -S oblogout
+
+System Lightdm GTK+ Greeter Settings
+$ sudo xbps-install -S python3 # previous line won't start without python3
+
+
+
+
+virtulbox guest editions?
+
+
+
+
+
