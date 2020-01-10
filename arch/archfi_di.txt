@@ -43,7 +43,7 @@ archdi.sourceforge.net/archdi
     Install Firmware pacstrap linux-firmare
     Config Arch Linux
         Set Computer Name   /etc/hostname
-            echo "mxsh" > /mnt/etc/hostname
+            echo "hmsxq" > /mnt/etc/hostname
         Set Keyboard Layout /etc/vconsole.conf
             us
                 echo "KEYMAP=us" > /mnt/etc/vconsole.conf

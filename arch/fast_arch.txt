@@ -1,0 +1,122 @@
+-----------------------------PRE
+# pacman -Sy
+# pacman -S reflector
+# reflector -l 50 -f 50 -p https --verbose --sort rate --save /etc/pacman.d/mirrorlist
+# timedatectl set-ntp true
+-- cfdisk (root 18G swap 2G) OR (root 20G no swap) --
+# mkfs.ext4 /dev/sda1
+# mount /dev/sda1 /mnt
+# mkswap /dev/sda2
+# swapon /dev/sda2
+-----------------------------
+# pacstrap /mnt base base-devel linux linux-firmware
+-----------------------------
+# genfstab -U /mnt >> /mnt/etc/fstab
+-----------------------------
+# arch-chroot /mnt
+# ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+# hwclock --systohc
+-----------------------------
+# sed -i '/#en_US.UTF-8/s/^#//g' /etc/locale.gen
+# sed -i '/#ru_RU.UTF-8/s/^#//g' /etc/locale.gen
+# locale-gen
+# echo "LANG=en_US.UTF-8" > /etc/locale.conf
+# echo "LC_COLLATE=C" >> /etc/locale.conf
+# echo "KEYMAP=us" > /etc/vconsole.conf
+-----------------------------
+# echo "hmsxq" > /etc/hostname
+# echo -e "127.0.0.1\tlocalhost" >> /etc/hosts
+# echo -e "::1\t\tlocalhost" >> /etc/hosts
+# echo -e "127.0.1.1\thmsxq.localdomain\thmsxq" >> /etc/hosts
+-----------------------------
+# passwd
+# pacman -S grub
+# grub-install --target=i386-pc /dev/sda
+# grub-mkconfig -o /boot/grub/grub.cfg
+-----------------------------
+# pacman -S networkmanager
+# systemctl enable NetworkManager
+# exit
+# umount -R /mnt
+# reboot
+-----------------------------POST
+# useradd -m -g users -G wheel -s /bin/bash MYUSERNAME
+# passwd MYUSERNAME
+# EDITOR=vim visudo
+%wheel ALL=(ALL) ALL
+# exit
+$ sudo pacman -Syu
+-----------------------------
+xorg-server +
+xorg-xinit +
+xterm +
+xorg-drivers + (xf86-video-vmware)
+
+
+xorg-xinit +
+xf86-input-libinput +
+
+
+
+
+
+# vim /etc/pacman.conf
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+---------------------------------XFCE4
+# pacman -Syy
+# pacman -S xorg-server xorg-drivers
+# pacman -S xfce4 xfce4-goodies lxdm
+# systemctl enable lxdm
+
+# reboot
+
+# sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils
+
+# pacman -S alsa-lib alsa-utils pulseaudio
+# alsamixer
+# alsactl store
+
+# pacman -S firefox
+--------------------------------
+
+
+
+
+
+(aur hblock)
+An adblocker that creates a hosts file from automatically downloaded blacklists
+
+Post-installation
+
+plasma5
+openbox
+i3
+dwm
+lightdm
+
+login manager
+window manager
+desktop environment
+
+ip addr add 10.1.1.2/16 dev eth1
+ip link set eth1 up
+
+ip add show
+ip route show
+
+wget https://terminalroot.com.br/pos-arch.in
+chmod +x pos-arch.in
+./pos-arch.in -h
+./pos-arch.in -sudouser marcos
+./pos-arch.in -i
+
+
+pywal - colors your desktop
+###########################################################################
+# pacman -S usbutils screenfetch mc
+# lsusb
+mice installation:
+# gpm -m /dev/input/mice -t imps2
+
+useradd -d /home/$username -s /bin/bash -m -N $username

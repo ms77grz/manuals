@@ -1,4 +1,7 @@
 #########################################################################
+Puting ISO on USB drive (sdx)
+# sudo dd if=Downloads/archlinux-2019.12.01-x86_64.iso of=/dev/sdx status="progress"
+#########################################################################
 PHASE ONE
 ####################### SET THE KEYBOARD LAYOUT #########################
 The default console keymap is US and maybe you do not have to do anything
@@ -17,7 +20,6 @@ To change the font
 #########################################################################
 
 ###### CONNECT TO THE INTERNET AND RETRIEVE THE LATEST MIRROR LIST ######
-# ping -c 4 google.com
 # pacman -Sy
 # pacman -S reflector
 # cp -vf /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
@@ -156,7 +158,7 @@ The partition table has been altered
 
 ############################## FSTAB BIOS ###############################
 # genfstab -U /mnt >> /mnt/etc/fstab
-cat /mnt/etc/fstab
+# cat /mnt/etc/fstab
 ########################## CHROOT VIM DHCPCD ############################
 # arch-chroot /mnt
 # ls
