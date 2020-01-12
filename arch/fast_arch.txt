@@ -46,18 +46,36 @@
 %wheel ALL=(ALL) ALL
 # exit
 $ sudo pacman -Syu
------------------------------
-xorg-server +
-xorg-xinit +
-xterm +
-xorg-drivers + (xf86-video-vmware)
-
-
-xorg-xinit +
-xf86-input-libinput +
-
-
-
+-----------------------------GRAPHIC
+------Xorg
+# sudo pacman -S xorg-server xorg-xinit
+---xorg-drivers + (xf86-video-vmware) + (xf86-video-intel)
+---xterm +
+xinit or startx -- reads ~/.xinitrc to know what to start
+------
+------WM (i3-gaps)
+# pacman -S i3-gaps i3status rxvt-unicode dmenu
+- Network manager (nm-applet)
+- Fonts
+# pacman -S ttf-linux-libertine ttf-linux-inconsolata
+    or just
+# pacman -S noto-fonts
+- Set your fonts manually in: ~/.config/fontconfig/fonts.conf
+- Make the X server start i3 when it starts: in ~/.xinitrc, put: exec i3
+- Type startx to start the X server
+------
+------WM (xfce4)
+# pacman -S install xfce4
+- Add: exec xfce-session to ~/.xinitrc
+------
+------DM
+# sudo pacman -S lightdm lightdm-gtk-greeter
+# sudo systemctl enable lightdm.service
+------
+------Profile
+- Customizing user startup and settings
+- Check out files like ~/.profile or ~/.bash_profile, which will run on login
+- example in ~/webapps/scripts
 
 
 # vim /etc/pacman.conf

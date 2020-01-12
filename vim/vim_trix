@@ -41,3 +41,20 @@ Result is:
 vim .vimrc
 set number
 
+######################################################################
+w - word forward
+b - word backward
+dw - delete word forward
+db - delete word backward
+######################################################################
+:sp - horizontal split
+:vsp - vertical split
+######################################################################
+ct$ - 
+/YouTube\C - find YouTube case sensitive
+:%s//Man Pages Archive/g - replace all previous matches (YouTube)
+######################################################################
+ci} - change inside {} and enter into edit mode
+di} - change inside {} and stay in normal mode
+dt. - delete any characters till .
+dT. - delete back any characters till .

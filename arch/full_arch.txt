@@ -417,6 +417,28 @@ $ vim ~/.config/openbox/rc.xml
         <command>/usr/bin/bash /usr/local/bin/menu-surfraw</command>
     </action>
 </keybind>
+################ Adding local Elvi ###########
+# sudo pacman -Ql surfraw
+cat /usr/lib/surfraw/youtube
+# mkdir -p ~/.config/surfraw/elvi
+# cp /etc/xdg/surfraw/conf ~/.config/surfraw/conf
+
+file - bookmarks
+dir- gg
+
+# cp /usr/lib/surfraw/youtube ~/.config/surfraw/elvi/manned
+# vim manned
+/youtube.com
+:%s//manned.org/g
+/YouTube\C
+:%s//Man Pages Archive/g
+/youtube
+:%s//manned/
+/https
+n
+ct$
+<C+S+p>https://manned.org/browse/search?q=
+:x
 ##############################################
 
 ############ AS EXAMPLE COPY TO .CONFIG ######

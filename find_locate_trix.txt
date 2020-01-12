@@ -1,0 +1,4 @@
+$ find ~/webapps -name "top-memory"
+/home/magax/webapps/scripts/top-memory
+$ find -name "top-cpu"
+./webapps/scripts/top-cpu

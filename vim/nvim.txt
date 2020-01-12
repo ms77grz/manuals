@@ -1,0 +1,11 @@
+community/neovim 0.4.3-1 [installed]
+    Fork of Vim aiming to improve user experience, plugins, and GUIs
+$ mkdir -p ~/.config/nvim
+$ nvim ~/.config/nvim/init.vim
+
+:h base-directories
+
+
+reload current eddited configuration
+:so %
+% stands for current file name (see :h current-file) and :so is short for :source, which reads the content of the specified file and treats it as Vim code.

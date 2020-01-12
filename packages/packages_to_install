@@ -57,3 +57,12 @@ community/bmon 4.0-3 [installed]
 extra/lm_sensors 3.6.0-1 [installed]
     Collection of user space tools for general SMBus access and hardware monitoring
 ####################################################
+community/youtube-viewer 1:3.7.0-1 [installed]
+    Command line utility for viewing YouTube videos
+####################################################
+community/zeal 1:0.6.1-1 [installed]
+    An offline API documentation browser
+####################################################
+community/the_silver_searcher 2.2.0-1
+    Code searching tool similar to Ack, but faster
+####################################################

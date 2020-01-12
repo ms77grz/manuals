@@ -62,3 +62,7 @@ grep -Rn "xfce4-session-logout" /
 
 OR
 ack "some text to find"
+
+$ type sr
+sr is aliased to `sr -browser=w3m'
+
