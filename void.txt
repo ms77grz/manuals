@@ -159,7 +159,7 @@ $ sudo xbps-install -Syu
 $ sudo reboot
 
 $ sudo xbps-install -S xorg dbus lightdm-gtk-greeter-settings openbox obconf obmenu obmenu-generator
-tint2 nitrogen Thunar octoxbps gksu xfce4-terminal xdg-utils xdg-user-dirs lxappearance lxtask compton 
+tint2 nitrogen Thunar octoxbps gksu xfce4-terminal xdg-utils xdg-user-dirs lxappearance lxtask compton
 
 optional pcmanfm mc etc...
 $ vim ~/.xinitrc

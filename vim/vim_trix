@@ -58,3 +58,5 @@ ci} - change inside {} and enter into edit mode
 di} - change inside {} and stay in normal mode
 dt. - delete any characters till .
 dT. - delete back any characters till .
+######################################################################
+:pwd - get current directory

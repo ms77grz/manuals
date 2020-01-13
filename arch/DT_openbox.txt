@@ -92,8 +92,9 @@ https://www.youtube.com/watch?v=9IEiqkNsHp0
 ########## PICOM #################
 Picom is a standalone compositor for Xorg, suitable for use with window managers that do not provide compositing.
 $ sudo pacman -S picom
+$ cp /etc/xdg/picom.conf ~/.config/picom/
 $ vim ~/.config/openbox/autostart
-picom -b --config ~/.config/picom.conf &
+picom -b --config ~/.config/picom/picom.conf &
 ############ Variety #############
 Variety is an open-source wallpaper changer for Linux
 $ pacman -S variety

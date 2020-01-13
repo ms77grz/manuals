@@ -52,8 +52,7 @@ $ sudo pacman -Syu
 ---xorg-drivers + (xf86-video-vmware) + (xf86-video-intel)
 ---xterm +
 xinit or startx -- reads ~/.xinitrc to know what to start
-------
-------WM (i3-gaps)
+-----------------------------WM (i3-gaps)
 # pacman -S i3-gaps i3status rxvt-unicode dmenu
 - Network manager (nm-applet)
 - Fonts
@@ -63,19 +62,29 @@ xinit or startx -- reads ~/.xinitrc to know what to start
 - Set your fonts manually in: ~/.config/fontconfig/fonts.conf
 - Make the X server start i3 when it starts: in ~/.xinitrc, put: exec i3
 - Type startx to start the X server
-------
-------WM (xfce4)
+-----------------------------WM (xfce4)
 # pacman -S install xfce4
 - Add: exec xfce-session to ~/.xinitrc
 ------
-------DM
-# sudo pacman -S lightdm lightdm-gtk-greeter
+-----------------------------DM
+# sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 # sudo systemctl enable lightdm.service
-------
+-----------------------------
 ------Profile
 - Customizing user startup and settings
 - Check out files like ~/.profile or ~/.bash_profile, which will run on login
 - example in ~/webapps/scripts
+##############################################################################
+
+yay-bin
+yay sardi-icons
+yay surfn icons (1)(surfn-icons-git)
+yay lxappearance (1)
+lxappearance - Customizing Look and Feel
+yay arc-gtk (1)(arc-gtk-theme)
+yay ttf-dejavu(1)(ttf-dejavu)
+yay zekton
+yay terminus-font-ttf
 
 
 # vim /etc/pacman.conf
