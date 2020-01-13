@@ -41,17 +41,37 @@
 # umount -R /mnt
 # reboot
 -----------------------------POST
+-----------Add User
 # useradd -m -g users -G wheel -s /bin/bash MYUSERNAME
 # passwd MYUSERNAME
 # EDITOR=nvim visudo
 %wheel ALL=(ALL) ALL
 # exit
 $ sudo pacman -Syyu
+-----------Install wget git yay
+$ sudo pacman -S wget
+$ sudo pacman -S git
+$ wget https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=yay-bin -O PKGBUILD
+$ makepkg
+$ sudo pacman -U yay-bin-9.4.2-2-x86_64.pkg.tar.x
+-----------Config pacman
+$ sudo nvim /etc/pacman.conf
+# Misc options
+Color
+TotalDownload
+#CheckSpace
+VerbosePkgLists
+ILoveCandy
 -----------------------------Xorg
-# sudo pacman -S xorg-server xorg-xinit
+$ sudo pacman -S xorg-server xorg-apps xorg-xinit xterm
 ---xorg-drivers + (xf86-video-vmware) + (xf86-video-intel)
----xterm +
 xinit or startx -- reads ~/.xinitrc to know what to start
+-----------------------------WM (OpenBox)
+$ sudo pacman -S openbox
+-----------------------------DM
+$ sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+$ sudo systemctl enable lightdm.service
+$ sudo systemctl start lightdm.service
 -----------------------------WM (i3-gaps)
 # pacman -S i3-gaps i3status rxvt-unicode dmenu
 - Network manager (nm-applet)
@@ -66,10 +86,7 @@ xinit or startx -- reads ~/.xinitrc to know what to start
 # pacman -S install xfce4
 - Add: exec xfce-session to ~/.xinitrc
 ------
------------------------------DM
-# sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
-# sudo systemctl enable lightdm.service
------------------------------
+
 ------Profile
 - Customizing user startup and settings
 - Check out files like ~/.profile or ~/.bash_profile, which will run on login
