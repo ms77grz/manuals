@@ -271,8 +271,7 @@ ATI – INTEL – NVIDIA
 There is no need to install a driver in virtual box.
 Start on the xorg wiki page find out what driver you need for your hardware.
 $ lspci | grep -e VGA -e 3D
-
-I think it needs some examples of installation ... !!!!!!!!!!!!!!!!!!!!!!
+---xorg-drivers + (xf86-video-vmware) + (xf86-video-intel)
 #########################################################################
 
 ###################### INSTALL DISPLAY MANAGER ##########################
@@ -283,16 +282,13 @@ $ sudo systemctl enable lightdm.service
 Do not reboot until you have a desktop environment.
 #########################################################################
 
-##################### INSTALL DESKTOP ENVIRONMENT #######################
+########################## INSTALL WINDOW MANAGER #######################
 $ sudo pacman -S openbox obconf
 $ yay -S obmenu3 obmenu-generator
 
-$ mkdir -p ~/.config/openbox
-$ cp -p /etc/xdg/openbox/* ~/.config/openbox
-### or this way
 $ cp -r /etc/xdg/openbox/ ~/.config/
 
-$ sudo pacman -S tint2 # tint2 is a simple, unobtrusive and light panel for Xorg. It can be configured to include a system tray, a task list, a battery monitor and more.
+$ sudo pacman -S tint2
 
 $ obmenu3 # to change menu commands
 $ openbox --reconfigure
@@ -314,7 +310,6 @@ $ sudo pacman -S playerctl # utility to control media players via MPRI
 $ sudo pacman -S gvim thunar firefox termite youtube-dl mpv rhythmbox
 $ sudo pacman -S expac # List installed packages by date on Arch
 $ sudo pacman -S hwinfo
-
 #########################################################################
 
 
@@ -340,11 +335,6 @@ $ sudo pacman -S chromium
 exec dwm
 #########################################################################
 
-
-
-
-
-
 ########################### GDM INSTALATION ############################
 sudo pacman -S gdm
 sudo systemctl enable gdm.service -f
@@ -356,26 +346,20 @@ sudo systemctl enable lightdm.service -f
 reboot
 ########################################################################
 
-
-
 ####################### XORG troubleshooting ###########################
 vim /var/log/Xorg.0.log
 pkill X
 ########################################################################
 
 ###################### SOME QUESTIONS ABOUT ############################
-
-
 systemctl disable lightdm.service
 
 userdel -rf USERNAME
-
 groups
 groups USERNAME
 
 count number of cores:
 $ grep -c ^processor /proc/cpuinfo 
-
 
 $ systemctl get-default 
 graphical.target
@@ -386,7 +370,6 @@ sudo systemctl set-default graphical.target
 # systemctl set-default multi-user.target
 
 expac --timefmt='%F %T' '%l %n' | sort -n | tail -n 7
-
 
 
 ##################### ROFI #################

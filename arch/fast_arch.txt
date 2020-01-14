@@ -1,7 +1,7 @@
 -----------------------------PRE
 # pacman -Sy
 # pacman -S reflector
-# reflector -c "Russia" -f --save /etc/pacman.d/mirrorlist
+# reflector -c "Russia" -f 5 --save /etc/pacman.d/mirrorlist
 # timedatectl set-ntp true
 -- cfdisk (root 18G swap 2G) OR (root 20G no swap) --
 # mkfs.ext4 /dev/sda1
@@ -24,11 +24,11 @@
 # echo "LC_COLLATE=C" >> /etc/locale.conf
 # echo "KEYMAP=us" > /etc/vconsole.conf
 -----------------------------
-# echo "mxss" > /etc/hostname
+# echo "mxsx" > /etc/hostname
 # nvim /etc/hosts
 127.0.0.1	localhost
 ::1         localhost
-127.0.1.1	mxss.localdomain	mxss
+127.0.1.1	mxsx.localdomain	mxsx
 -----------------------------
 # passwd
 # pacman -S grub
@@ -72,6 +72,48 @@ $ sudo pacman -S openbox
 $ sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 $ sudo systemctl enable lightdm.service
 $ sudo systemctl start lightdm.service
+-----------------------------WALLPAPER
+$ sudo pacman -S nitrogen
+$ plasma-workspace-wallpapers
+$ nitrogen add -> /usr/share/wallpapers
+-----------------------------PANEL
+$ sudo pacman -S tint2
+-----------------------------TWEEKS
+$ sudo pacman -S lxappearance obconf lxappearance-obconf 
+$ cp /etc/xdg/picom.conf ~/.config/
+
+$ cp -r /etc/xdg/openbox ~/.config/
+$ nvim ~/.config/openbox/autostart
+picom -b --config ~/.config/picom.conf &
+nitrogen --restore &
+tint2 &
+
+
+
+compton -b &
+tint2 &
+nitrogen --restore &
+
+-----------------------------USER DIRS
+$ sudo pacman -S xdg-user-dirs
+$ xdg-user-dirs-update
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -----------------------------WM (i3-gaps)
 # pacman -S i3-gaps i3status rxvt-unicode dmenu
 - Network manager (nm-applet)
@@ -86,19 +128,24 @@ $ sudo systemctl start lightdm.service
 # pacman -S install xfce4
 - Add: exec xfce-session to ~/.xinitrc
 ------
-
+####################### START XORG WITHOUT DM ################################
 ------Profile
 - Customizing user startup and settings
 - Check out files like ~/.profile or ~/.bash_profile, which will run on login
 - example in ~/webapps/scripts
 ##############################################################################
 
-yay-bin
+
+
+######################### ICONS FONTS THEMES #################################
+lxappearance - Customizing Look and Feel
+yay lxappearance (1)
+-----------------------------ICONS
 yay sardi-icons
 yay surfn icons (1)(surfn-icons-git)
-yay lxappearance (1)
-lxappearance - Customizing Look and Feel
+-----------------------------THEMES
 yay arc-gtk (1)(arc-gtk-theme)
+-----------------------------FONTS
 yay ttf-dejavu(1)(ttf-dejavu)
 yay zekton
 yay terminus-font-ttf
@@ -130,14 +177,6 @@ Include = /etc/pacman.d/mirrorlist
 
 (aur hblock)
 An adblocker that creates a hosts file from automatically downloaded blacklists
-
-Post-installation
-
-plasma5
-openbox
-i3
-dwm
-lightdm
 
 login manager
 window manager
