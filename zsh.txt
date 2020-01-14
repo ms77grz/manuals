@@ -1,0 +1,17 @@
+Supercharge Your Terminal with the Zsh Shell (+Addons)
+$ sudo pacman -S tilix
+$ sudo pacman -S zsh
+$ which zsh
+$ sudo chsh -s /usr/bin/zsh
+$ reboot
+
+https://github.com/ohmyzsh/ohmyzsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+Themes
+https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+$ nvim ~/.config/.zshrc
+ZSH_THEME="tonotdo"
+
+$ sudo pacman -S python-pip
+$ sudo pip install powerline-status
