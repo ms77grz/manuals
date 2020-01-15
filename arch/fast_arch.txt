@@ -170,11 +170,6 @@ Include = /etc/pacman.d/mirrorlist
 
 # pacman -S firefox
 --------------------------------
-
-
-
-
-
 (aur hblock)
 An adblocker that creates a hosts file from automatically downloaded blacklists
 
@@ -203,3 +198,6 @@ mice installation:
 # gpm -m /dev/input/mice -t imps2
 
 useradd -d /home/$username -s /bin/bash -m -N $username
+##################### VIRTUAL BOX ###########################
+$ xrandr -s 1024x768
+View -> Adjust Window Size

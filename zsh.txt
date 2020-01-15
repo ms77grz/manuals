@@ -1,3 +1,4 @@
+################################ Install and set the Zsh shell ##################################
 Supercharge Your Terminal with the Zsh Shell (+Addons)
 $ sudo pacman -S tilix
 $ sudo pacman -S zsh
@@ -5,13 +6,86 @@ $ which zsh
 $ sudo chsh -s /usr/bin/zsh
 $ reboot
 
+################################ Install Oh-My-Zsh ############################################## 
+OH MY ZSH is an open source, community-driven framework for managing your zsh configuration.
 https://github.com/ohmyzsh/ohmyzsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-Themes
+THEMES
 https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 $ nvim ~/.config/.zshrc
 ZSH_THEME="tonotdo"
 
+############################## Install Powerline and set the patched font ######################
+POWERLINE is a statusline plugin for vim, and provides statuslines and prompts for several other applications,
+including zsh, bash, tmux, IPython, Awesome, i3 and Qtile.
 $ sudo pacman -S python-pip
 $ sudo pip install powerline-status
+
+POWERLINE fonts -> ~/.local/share/fonts/
+https://github.com/powerline/fonts
+$ git clone https://github.com/powerline/fonts.git --depth=1
+$ cd fonts
+$ ./install.sh
+$ cd ..
+$ rm -rf fonts
+$ fc-cache
+####
+#In some distributions, Terminess Powerline is ignored by default and must be explicitly allowed. A fontconfig file is provided which enables it.
+#Copy this file from the fontconfig directory to your home folder under ~/.config/fontconfig/conf.d (create it if it doesn't exist) and re-run fc-cache -vf.
+####
+Open tilix add custom settings (inconsolata) change font to Inconsolata for Powerline Medium 12
+
+####################### Install PowerLevel9K and set it as the theme #########################
+Powerlevel9k is a theme for ZSH which uses Powerline Fonts. It can be used with vanilla ZSH or ZSH frameworks such as Oh-My-Zsh, Prezto, Antigen, and many others.
+https://github.com/Powerlevel9k/powerlevel9k
+
+Option 2: Install for Oh-My-ZSH
+To install this theme for use in Oh-My-Zsh, clone this repository into your OMZ custom/themes directory.
+$ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+You then need to select this theme in your ~/.zshrc:
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+Prompt Customization
+https://github.com/Powerlevel9k/powerlevel9k/wiki/Stylizing-Your-Prompt
+https://github.com/Powerlevel9k/powerlevel9k/wiki/Show-Off-Your-Config
+letientai299's configuration
+
+$ nvim ~/.config/.zshrc
+# POWERLINELEVEL9k letientai299's configuration
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_MODE='awesome-patched'
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+
+POWERLEVEL9K_VCS_GIT_ICON=''
+POWERLEVEL9K_VCS_STAGED_ICON='\u00b1'
+POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
+POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
+POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
+POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
+
+POWERLEVEL9K_RAM_BACKGROUND="black"
+POWERLEVEL9K_RAM_FOREGROUND="249"
+POWERLEVEL9K_RAM_ELEMENTS=(ram_free)
+
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="\n"
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{white}%F{black} `date +%T` \UE12E %f%k%F{white}%f "
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status nvm rvm background_jobs ram battery)
+
+Font is Source Code Pro + Powerline Awesome Regular at 14pt (for bot Regular and Non-ASCII font). Copied from Falkor's config.
+https://github.com/gabrielelana/awesome-terminal-fonts/blob/c24e7e1e8c2106ef8a136b0861c11ce95b555443/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf
+Add font to ~/.local/share/fonts/
+
+The color scheme is aci from Mayccoll/Gogh
+http://mayccoll.github.io/Gogh/
+
+############################# Install and set the Zsh-Autosuggestions plugin #################################
+https://github.com/zsh-users/zsh-autosuggestions
+1. Clone this repository into $ZSH_CUSTOM/plugins (by default ~/.oh-my-zsh/custom/plugins)
+$ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+2. Add the plugin to the list of plugins for Oh My Zsh to load (inside ~/.zshrc):
+plugins=(zsh-autosuggestions)
+3. Start a new terminal session.
+############# THE EHD #################
