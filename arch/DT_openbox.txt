@@ -16,22 +16,22 @@ Terminals -> xterm
 $ tint2
 ##################################
 
-####### WALLPAPER NITROGEN #######
-Terminals -> xterm
-$ nitrogen
-Preferences -> Directories -> Add /usr/share/backgrounds/gnome SELECT -> OK
-Then select any of wallpapers, Automatic change to Scaled and APPLY it, close nitrogen
-##################################
+                                                            ####### WALLPAPER NITROGEN #######
+                                                            Terminals -> xterm
+                                                            $ nitrogen
+                                                            Preferences -> Directories -> Add /usr/share/backgrounds/gnome SELECT -> OK
+                                                            Then select any of wallpapers, Automatic change to Scaled and APPLY it, close nitrogen
+                                                            ##################################
 
-######### OPENBOX AUTOSTART ######
-vim ~/.config/openbox/autostart
+                                                            ######### OPENBOX AUTOSTART ######
+                                                            vim ~/.config/openbox/autostart
 
-tint2 &
-nitrogen --restore &
+                                                            tint2 &
+                                                            nitrogen --restore &
 
-:x
-logout and log back in
-##################################
+                                                            :x
+                                                            logout and log back in
+                                                            ##################################
 
 #### MENUMAKER ###################
 $ sudo pacman -S menumaker
@@ -51,17 +51,18 @@ sudo pacman -S virtualbox-guest-utils
 
 ######## OPENBOX RECONFIGURE #####
 https://gitlab.com/dwt1/dotfiles/tree/master/.config/openbox
-download zip file
-$pacman -S xarchiver
-extract archive
-copy rc.xml pipemenus into ~/.config/openbox/
+download source code
+unzip dotfiles-master.zip
+                                                                                $pacman -S xarchiver
+                                                                                extract archive
+copy -r rc.xml pipemenus into ~/.config/openbox/
 $ openbox --reconfigure
 ##################################
 
 ######## TINT2 RECONFIGURE #######
 https://gitlab.com/dwt1/dotfiles/tree/master/.config/tint2
-download zip file
-extract archive
+download source code
+$ unzip dotfiles-master.zip
 copy launchers tint2rc into ~/.config/tint2/
 logout and log back in
 ##################################

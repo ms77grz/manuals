@@ -114,8 +114,9 @@ In ~/.config/openbox/rc.xml
 -----------------------------USER DIRS
 $ sudo pacman -S xdg-user-dirs
 $ xdg-user-dirs-update
-
+-----------------------------Compare files
 $ sudo pacman -S meld
+-----------------------------
 
 
 
@@ -161,6 +162,8 @@ yay lxappearance (1)
 yay sardi-icons
 yay surfn icons (1)(surfn-icons-git)
 -----------------------------THEMES
+$ mkdir ~/.themes
+All custom themes to -> ~/.themes
 yay arc-gtk (1)(arc-gtk-theme)
 -----------------------------FONTS
 yay ttf-dejavu(1)(ttf-dejavu)
