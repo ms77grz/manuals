@@ -74,31 +74,48 @@ $ sudo systemctl enable lightdm.service
 $ sudo systemctl start lightdm.service
 -----------------------------WALLPAPER
 $ sudo pacman -S nitrogen
-$ plasma-workspace-wallpapers
+$ sudo pacman -S plasma-workspace-wallpapers
 $ nitrogen add -> /usr/share/wallpapers
 -----------------------------PANEL
 $ sudo pacman -S tint2
 -----------------------------TWEEKS
-$ sudo pacman -S lxappearance obconf lxappearance-obconf 
-$ cp /etc/xdg/picom.conf ~/.config/
-
+$ sudo pacman -S lxappearance obconf lxappearance-obconf
+$ sudo pacman -S picom
+$ mkdir -p ~/.config/picom
+$ cp /etc/xdg/picom.conf ~/.config/picom/
+Transparancy doesn't work in virtualbox, comment line to fix that:
+#vsync = true;
 $ cp -r /etc/xdg/openbox ~/.config/
 $ nvim ~/.config/openbox/autostart
-picom -b --config ~/.config/picom.conf &
+picom -b --config ~/.config/picom/picom.conf &
 nitrogen --restore &
 tint2 &
+-----------------------------Termite, Transparancy, Keybinds
+$ sudo pacman -S termite
+$ cp -r /etc/xdg/termite ~/.config/
+$ nvim ~/.config/termite/config
+/#background = rgba(63, 63, 63, 0.8)
+background = rgba(63, 63, 63, 1)
 
-
-
-compton -b &
-tint2 &
-nitrogen --restore &
+In ~/.config/openbox/rc.xml
+<!-- PICOM LESS TRANSPARANCY -->
+<keybind key="C-S-KP_Add">
+  <action name="Execute">
+    <command>picom-trans -c +10</command>
+  </action>
+</keybind>
+<!-- PICOM MORE TRANSPARANCY -->
+<keybind key="C-S-KP_Subtract">
+  <action name="Execute">
+    <command>picom-trans -c -10</command>
+  </action>
+</keybind>
 
 -----------------------------USER DIRS
 $ sudo pacman -S xdg-user-dirs
 $ xdg-user-dirs-update
 
-
+$ sudo pacman -S meld
 
 
 

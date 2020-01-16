@@ -1,11 +1,28 @@
 community/neovim 0.4.3-1 [installed]
     Fork of Vim aiming to improve user experience, plugins, and GUIs
+$ sudo pacman -S neovim xclip
 $ mkdir -p ~/.config/nvim
 $ nvim ~/.config/nvim/init.vim
 
+set bg=light
+set nohlsearch
+set clipboard+=unnamedplus
+
+" BASICS
+set number relativenumber
+
+" Shortcutting split navigation, saving a keypress:
+	map <C-h> <C-w>h
+	map <C-j> <C-w>j
+	map <C-k> <C-w>k
+	map <C-l> <C-w>l
+
+
+===========================================================================
 :h base-directories
 
 
 reload current eddited configuration
 :so %
-% stands for current file name (see :h current-file) and :so is short for :source, which reads the content of the specified file and treats it as Vim code.
+% stands for current file name (see :h current-file) and
+:so is short for :source, which reads the content of the specified file and treats it as Vim code.

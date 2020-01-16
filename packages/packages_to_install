@@ -1,11 +1,9 @@
-ranger
+all packeges are placed in /var/cache/pacman/pkg
+
 sxiv
 figlet
 pv
-
-
 Xinerama
-nitrogen
 
 community/atool 0.39.0-6 [installed]
     A script for managing file archives of various types
