@@ -48,7 +48,7 @@
 %wheel ALL=(ALL) ALL
 # exit
 $ sudo pacman -Syyu
------------Install wget git yay
+-----------Install wget git yay unzip
 $ sudo pacman -S wget
 $ sudo pacman -S git
 $ wget https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=yay-bin -O PKGBUILD
@@ -66,32 +66,38 @@ ILoveCandy
 $ sudo pacman -S xorg-server xorg-apps xorg-xinit xterm
 ---xorg-drivers + (xf86-video-vmware) + (xf86-video-intel)
 xinit or startx -- reads ~/.xinitrc to know what to start
------------------------------WM (OpenBox)
-$ sudo pacman -S openbox
 -----------------------------DM
 $ sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 $ sudo systemctl enable lightdm.service
 $ sudo systemctl start lightdm.service
+-----------------------------WM (OpenBox)
+$ sudo pacman -S openbox obconf lxappearance lxappearance-obconf
+-----------------------------obmenu-generator
+$ yay -S obmenu3 obmenu-generator perl-linux-desktopfiles gtk2-perl
+$ sudo pacman -S geany gmrun conky pcmanfm xarchiver
+-----------------------------User Directories, File Extension and MIME Type
+$ sudo pacman -S xdg-user-dirs xdg-utils desktop-file-utils
 -----------------------------WALLPAPER
 $ sudo pacman -S nitrogen
-$ sudo pacman -S plasma-workspace-wallpapers
+$ sudo pacman -S plasma-workspace-wallpapers gnome-backgrounds
 $ nitrogen add -> /usr/share/wallpapers
 -----------------------------PANEL
 $ sudo pacman -S tint2
------------------------------TWEEKS
-$ sudo pacman -S lxappearance obconf lxappearance-obconf
+-----------------------------COMPOSITING (picom) 
 $ sudo pacman -S picom
 $ mkdir -p ~/.config/picom
 $ cp /etc/xdg/picom.conf ~/.config/picom/
 Transparancy doesn't work in virtualbox, comment line to fix that:
 #vsync = true;
+-----------------------------AUTOSTART (openbox) 
 $ cp -r /etc/xdg/openbox ~/.config/
 $ nvim ~/.config/openbox/autostart
 picom -b --config ~/.config/picom/picom.conf &
 nitrogen --restore &
 tint2 &
------------------------------Termite, Transparancy, Keybinds
-$ sudo pacman -S termite
+-----------------------------Termite, Transparancy, Keybinds, xterm to termite
+$ sudo pacman -S termite termite-info
+$ sed -i 's/xterm/termite/' ~/.config/obmenu-generator/schema.pl
 $ cp -r /etc/xdg/termite ~/.config/
 $ nvim ~/.config/termite/config
 /#background = rgba(63, 63, 63, 0.8)
@@ -110,28 +116,34 @@ In ~/.config/openbox/rc.xml
     <command>picom-trans -c -10</command>
   </action>
 </keybind>
-
------------------------------USER DIRS
-$ sudo pacman -S xdg-user-dirs
-$ xdg-user-dirs-update
 -----------------------------Compare files
 $ sudo pacman -S meld
+-----------------------------File Manager (lf)
+$ yay -S lf-bin
+$ mkdir ~/.config/lf
+$ nvim ~/.config/lf/lfrc
+set hidden
+https://github.com/gokcehan/lf/wiki/Tutorial
+-----------------------------ICONS
+yay sardi-icons
+yay surfn icons (1)(surfn-icons-git)
+-----------------------------THEMES
+$ mkdir ~/.themes
+All custom themes to -> ~/.themes
+yay arc-gtk (1)(arc-gtk-theme)
+-----------------------------FONTS
+yay ttf-dejavu(1)(ttf-dejavu)
+yay zekton
+yay terminus-font-ttf
 -----------------------------
+run as root non root
+yay -S gksu[libgksu, gconf] --needed --noconfirm
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+polkit
+polkit-gnome
+pamac
+xfce4-settings
 -----------------------------WM (i3-gaps)
 # pacman -S i3-gaps i3status rxvt-unicode dmenu
 - Network manager (nm-applet)
@@ -155,20 +167,6 @@ $ sudo pacman -S meld
 
 
 
-######################### ICONS FONTS THEMES #################################
-lxappearance - Customizing Look and Feel
-yay lxappearance (1)
------------------------------ICONS
-yay sardi-icons
-yay surfn icons (1)(surfn-icons-git)
------------------------------THEMES
-$ mkdir ~/.themes
-All custom themes to -> ~/.themes
-yay arc-gtk (1)(arc-gtk-theme)
------------------------------FONTS
-yay ttf-dejavu(1)(ttf-dejavu)
-yay zekton
-yay terminus-font-ttf
 
 
 # vim /etc/pacman.conf
@@ -221,3 +219,11 @@ useradd -d /home/$username -s /bin/bash -m -N $username
 ##################### VIRTUAL BOX ###########################
 $ xrandr -s 1024x768
 View -> Adjust Window Size
+
+#### MENUMAKER ###################
+$ sudo pacman -S menumaker
+$ mmaker openbox -vf -t xterm
+System -> Reconfigure Openbox or $ openbox --restart
+##################################
+sudo pacman -S virtualbox-guest-utils
+##################################
