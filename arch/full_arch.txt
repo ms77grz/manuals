@@ -313,12 +313,6 @@ $ sudo pacman -S hwinfo
 #########################################################################
 
 
-
-
-
-
-
-
 POST INSTALATION
 #########################################################################
 $ sudo pacman -S xorg xorg-xinit [xterm]
@@ -368,10 +362,6 @@ sudo systemctl set-default graphical.target
 
 # systemctl enable multi-user.target
 # systemctl set-default multi-user.target
-
-expac --timefmt='%F %T' '%l %n' | sort -n | tail -n 7
-
-
 ##################### ROFI #################
 as an example only
 <keybind key="C-space">
@@ -443,5 +433,3 @@ Comment out the graphical browser line, then uncomment the text browser line, th
 SURFRAW_text_browser=/usr/bin/links
 SURFRAW_graphical=no
 ###############################################
-
-feh --bg-center ~/wallpapers/ArchLinux01.jpg

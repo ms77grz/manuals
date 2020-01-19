@@ -1,0 +1,3 @@
+$ pgrep -u username firefox
+$ pfrep -u username
+$ kill 12345

@@ -1,0 +1,11 @@
+/var/log
+dmesg
+last
+lastlog
+
+journalctl
+journalctl -f
+logger Critical Error Has Occured!
+
+head
+tail

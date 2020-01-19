@@ -1,3 +1,25 @@
+Predictable Network Interface Names
+Integrated adapters: eno1
+Installed in a PCI slot: ens1
+Plugged into a USB conntector: enp2s0
+None of the above: enx000C29B09FB7
+Use the old init name: eth0
+
+Non-Ethernet Device Names
+en
+sl - serial line interface
+wl - wireless interface
+
+Show interfaces:
+ip link
+ip add
+
+ip addr add 10.1.1.2/16 dev eth1
+ip link set eth1 up
+
+ip route show
+
+
 show network interfaces
 $ netstat -i
 

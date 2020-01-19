@@ -34,3 +34,4 @@ reload current eddited configuration
 :so %
 % stands for current file name (see :h current-file) and
 :so is short for :source, which reads the content of the specified file and treats it as Vim code.
+

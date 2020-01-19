@@ -1,0 +1,10 @@
+1 aur/xlite_bin 2.0-6 (+19 0.00%) 
+    a multiplatform fully functioning softphone (binary only)
+asterisk and so on
+
+rsync
+grsync
+
+ssh -X 192.168.0.13
+run remote app
+$ grsync

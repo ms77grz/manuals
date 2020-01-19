@@ -5,15 +5,6 @@ figlet
 pv
 Xinerama
 
-community/atool 0.39.0-6 [installed]
-    A script for managing file archives of various types
-
-community/fzf 0.20.0-1
-    Command-line fuzzy finder
-
-
-
-
 ######## pywal ############
 $ sudo pacman -S python-pywal
 https://github.com/dylanaraps/pywal/wiki/Getting-Started
@@ -47,7 +38,12 @@ openbox themes and so on
 http://epsi-rns.github.io/desktop/2018/04/17/openbox-theme.html
 
 
-
+####################################################
+community/atool 0.39.0-6 [installed]
+    A script for managing file archives of various types
+####################################################
+community/fzf 0.20.0-1
+    Command-line fuzzy finder
 ####################################################
 community/bmon 4.0-3 [installed]
     Portable bandwidth monitor and rate estimator
@@ -77,3 +73,13 @@ sudo pacman -S --noconfirm --needed tlp
 sudo systemctl enable tlp.service
 sudo systemctl start tlp-sleep.service
 ##################################################
+feh --bg-center ~/wallpapers/ArchLinux01.jpg
+##################################################
+1 extra/expac 10-1 (14.6 KiB 35.1 KiB) (Installed)
+    pacman database extraction utility
+##################################################
+1 aur/pamac-aur 9.2.9-1 (+282 5.04%) (Installed)
+    A Gtk3 frontend for libalpm
+##################################################
+community/polkit-gnome 0.105-4 (58.1 KiB 343.0 KiB) (Installed)
+    Legacy polkit authentication agent for GNOME

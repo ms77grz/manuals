@@ -1,0 +1,88 @@
+$ sudo pacman -S slim
+
+$ sudo systemctl enable slim.service
+$ sudo pacman -S openbox
+
+$ sudo pacman -S slim-themes
+$ ls -la /usr/share/slim/themes
+$ sudo nvim /etc/slim.conf
+current_theme       archlinux
+
+$ sudo pacman -S feh firefox
+$ mkdir ~/Wallpaper
+$ firefox
+Preferences > Always ask you where to save files
+wallpaperstock.net
+turquoise 1280x720 > ~/Wallpaper/bg.jpg
+######### FEH
+$ feh --bg-fill ~/Wallpaper/bg.jpg
+$ nvim ~/.config/openbox/autostart
+feh --bg-fill ~/Wallpaper/bg.jpg &
+$ sudo pacman -S obconf
+$ git clone https://github.com/ms77grz/openbox-theme-collections ~/.themes
+$ obconf > Theme > Numix-Clone
+$ sudo pacman -S conky lsb-release
+######### CONKY
+$ git clone https://github.com/ms77grz/conky-theme-collections ~/.config/conky
+$ ls -la .config/conky
+$ ls -la .config/conky/informant/
+$ conky -c ~/.config/conky/informant/inf-orange.conkyrc
+$ nvim ~/.config/openbox/autostart
+conky -c ~/.config/conky/informant/inf-orange.conkyrc &
+######### TINT2
+$ sudo pacman -S tint2
+$ ls -la ~/.config
+$ rm -rf ~/.config/tint2/
+$ git clone https://github.com/ms77grz/tint2-theme-collections ~/.config/tint2
+$ tint2
+Import theme > userdir > Type a file name Location .config/tint2 Add blocks Add blocks.tint2rc
+Select theme blocks.tint2rc Edit theme...
+In Buttons 1-6 change home/user/.config part to ~/.config Apply Close Make default
+Import theme > userdir > Type a file name Location .config/tint2 Add triste select all Add
+Select themes triste-blue.tint2rc Make default
+######### OBMENU-GENERATOR
+$ cd /tmp/
+$ git clone https://aur.archlinux.org/yay.git
+$ cd yay/
+$ makepkg -si
+$ yay -S obmenu-generator geany gtk2-perl
+$ obmenu-generator -p -i
+$ nvim ~/.config/obmenu-generator/schema.pl
+
+$ ls -la /usr/share/icons/Adwaita/16x16/legacy/
+    system-log-out.png
+    system-shutdown.png
+$ ls -la /usr/share/icons/Adwaita/16x16/actions/
+    system-reboot-symbolic.symbolic.png
+    system-shutdown-symbolic.symbolic.png
+
+$ nvim .config/obmenu-generator/schema.pl
+## This option uses the default Openbox's "Exit" action
+    {exit => ['Exit', 'application-exit']},
+    {item => ['shutdown -r now', ,Restart, 'system-reboot-symbolic']},
+    {item => ['shutdown -h now', Shutdown, 'system-shutdown-symbolic']},
+
+$ yay -S pamac-aur polkit-gnome pamac-tray-appindicator
+$ nvim ~/.config/openbox/autostart
+sleep 1 && /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+Switch to root
+$ su
+$ pamac-manager
+Preferences > set Maximum parallel downloads to 0
+$ exit
+Log Out and Log Back In
+Open Pamac Manager and try to install AbiWord
+########## FILE MANAGER
+$ yay -S pcmanfm xdg-utils xdg-user-dirs
+$ xdg-user-dirs-update
+
+
+
+
+
+2 extra/slim 1.3.6-8 (251.6 KiB 433.0 KiB) 
+    Desktop-independent graphical login manager for X11
+
+
+
+

@@ -9,7 +9,7 @@
 # mkswap /dev/sda2
 # swapon /dev/sda2
 -----------------------------
-# pacstrap /mnt base base-devel linux linux-firmware neovim
+# pacstrap /mnt base base-devel linux linux-firmware neovim bash-completion
 -----------------------------
 # genfstab -U /mnt >> /mnt/etc/fstab
 -----------------------------
@@ -138,8 +138,6 @@ yay terminus-font-ttf
 -----------------------------
 run as root non root
 yay -S gksu[libgksu, gconf] --needed --noconfirm
-
-
 polkit
 polkit-gnome
 pamac
@@ -185,21 +183,10 @@ Include = /etc/pacman.d/mirrorlist
 # pacman -S alsa-lib alsa-utils pulseaudio
 # alsamixer
 # alsactl store
-
-# pacman -S firefox
 --------------------------------
 (aur hblock)
 An adblocker that creates a hosts file from automatically downloaded blacklists
 
-login manager
-window manager
-desktop environment
-
-ip addr add 10.1.1.2/16 dev eth1
-ip link set eth1 up
-
-ip add show
-ip route show
 
 wget https://terminalroot.com.br/pos-arch.in
 chmod +x pos-arch.in
