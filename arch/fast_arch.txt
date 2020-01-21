@@ -24,11 +24,11 @@
 # echo "LC_COLLATE=C" >> /etc/locale.conf
 # echo "KEYMAP=us" > /etc/vconsole.conf
 -----------------------------
-# echo "mxsx" > /etc/hostname
+# echo "xagame" > /etc/hostname
 # nvim /etc/hosts
-127.0.0.1	localhost
-::1         localhost
-127.0.1.1	mxsx.localdomain	mxsx
+127.0.0.1 localhost
+::1       localhost
+127.0.1.1 xagame.localdomain	xagame
 -----------------------------
 # passwd
 # pacman -S grub
@@ -42,8 +42,8 @@
 # reboot
 -----------------------------POST
 -----------Add User
-# useradd -m -g users -G wheel -s /bin/bash MYUSERNAME
-# passwd MYUSERNAME
+# useradd -m -g users -G wheel -s /bin/bash emagax
+# passwd emagax
 # EDITOR=nvim visudo
 %wheel ALL=(ALL) ALL
 # exit
@@ -66,14 +66,19 @@ ILoveCandy
 $ sudo pacman -S xorg-server xorg-apps xorg-xinit xterm
 ---xorg-drivers + (xf86-video-vmware) + (xf86-video-intel)
 xinit or startx -- reads ~/.xinitrc to know what to start
------------------------------DM
+-----------------------------DM (lightdm-gtk-greeter)
 $ sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 $ sudo systemctl enable lightdm.service
 $ sudo systemctl start lightdm.service
+-----------------------------DM (lightdm-slick-greeter)
+$ yay -S lightdm lightdm-slick-greeter lightdm-settings
+/etc/lightdm.conf
+greeter-session=lightdm-slick-greeter
+user-session=openbox
 -----------------------------WM (OpenBox)
 $ sudo pacman -S openbox obconf lxappearance lxappearance-obconf
 -----------------------------obmenu-generator
-$ yay -S obmenu3 obmenu-generator perl-linux-desktopfiles gtk2-perl
+$ yay -S obmenu3 obmenu-generator perl-linux-desktopfiles gtk2-perl obkey-git
 $ sudo pacman -S geany gmrun conky pcmanfm xarchiver
 -----------------------------User Directories, File Extension and MIME Type
 $ sudo pacman -S xdg-user-dirs xdg-utils desktop-file-utils
@@ -213,10 +218,3 @@ $ mmaker openbox -vf -t xterm
 System -> Reconfigure Openbox or $ openbox --restart
 ##################################
 sudo pacman -S virtualbox-guest-utils
-###### LIGHTDM-SLICK-GREETER #####
-lightdm
-lightdm-settings
-lightdm-slick-greeter
-/etc/lightdm.conf
-line 102 greeter-session=lightdm-slick-greeter
-##################################
