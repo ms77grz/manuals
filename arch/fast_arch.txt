@@ -213,4 +213,10 @@ $ mmaker openbox -vf -t xterm
 System -> Reconfigure Openbox or $ openbox --restart
 ##################################
 sudo pacman -S virtualbox-guest-utils
+###### LIGHTDM-SLICK-GREETER #####
+lightdm
+lightdm-settings
+lightdm-slick-greeter
+/etc/lightdm.conf
+line 102 greeter-session=lightdm-slick-greeter
 ##################################
