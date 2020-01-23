@@ -83,3 +83,9 @@ feh --bg-center ~/wallpapers/ArchLinux01.jpg
 ##################################################
 community/polkit-gnome 0.105-4 (58.1 KiB 343.0 KiB) (Installed)
     Legacy polkit authentication agent for GNOME
+##################################################
+25 aur/losslesscut 2.6.2-2 (+9 0.16%) (Installed)
+    Crossplatform GUI tool for lossless trimming/cutting of video/audio files
+##################################################
+1 aur/gtypist 2.9.5-6 (+4 0.08%) 
+    universal typing tutor
