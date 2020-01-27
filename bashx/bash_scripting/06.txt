@@ -1,0 +1,11 @@
+Using AWK to filter Data from Fields in Linux
+
+id -Gn
+
+grep magax /etc/group
+
+awk ' /magax/ { print } ' /etc/group
+
+awk -F: ' match($4,/magax/) { print } ' /etc/group
+
+awk -F: ' match($4,/magax/) { print $1 } ' /etc/group

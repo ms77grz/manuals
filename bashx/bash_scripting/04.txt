@@ -1,0 +1,13 @@
+Gather User Input in BASH Scripts
+
+read -p "Enter a user name: "
+Enter a user name: magax
+echo $REPLY
+magax
+
+read -p "Enter a user name: " username
+Enter a user name: magax
+echo $username
+magax
+
+userdel -r username

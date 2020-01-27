@@ -1,0 +1,10 @@
+sudo pacman -S at
+systemctl enable atd.service 
+systemctl start atd.service
+
+
+echo 'mpg123 nothuman.mp3' | at 23:46
+
+pactl set-sink-volume 0 100%
+
+mpg123 molina-hey-kids.mp3

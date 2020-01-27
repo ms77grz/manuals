@@ -1,0 +1,6 @@
+BASH Scripting Simple IF Statement
+
+if grep magax /etc/passwd 1> /dev/null 2>&1 ; then echo "Hello, magax"; fi
+
+date +%m
+if [ $(date +%m) -eq 07 ] ; then echo "it is summer"; fi

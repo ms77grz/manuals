@@ -60,3 +60,19 @@ dt. - delete any characters till .
 dT. - delete back any characters till .
 ######################################################################
 :pwd - get current directory
+######################################################################
+Indentation
+1 line
+2 line
+3 line
+4 line
+5 line
+
+:2,4s/^/  /
+
+1 line
+  2 line
+  3 line
+  4 line
+5 line
+######################################################################

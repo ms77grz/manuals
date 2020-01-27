@@ -1,0 +1,22 @@
+Create Logic Using Command Line Lists
+
+[ $PWD == $HOME ] && echo "You are home"
+You are home
+
+cd bin
+[ $PWD == $HOME ] && echo "You are home"
+[ $PWD == $HOME ] || echo "You are home"
+You are home
+
+vi list.sh
+list.sh /etc/ntp.conf
+24 /etc/ntp.conf
+
+list.sh /etc/ntp.conf || echo $?
+24 /etc/ntp.conf
+
+list.sh || echo $?
+1
+
+list.sh /etc || echo $?
+2

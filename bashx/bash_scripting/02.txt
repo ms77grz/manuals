@@ -1,0 +1,24 @@
+Adding Color to Your Shell
+
+PS1="\033[31m - sets color
+PS1="\033[31m[\u - user
+PS1="\033[31m[\u@\h - hostname
+PS1="\033[31m[\u@\h \w - directory path
+PS1="\033[31m[\u@\h \w] - [user@hostname ~]
+PS1="\033[31m[\u@\h \w]\$ - [user@hostname ~]$
+PS1="\033[31m[\u@\h \w]\$ \033[0m" - put our prompt back to normal 
+
+PS1="\033[31m[\u@\h \w]\$ \033[0m"
+
+RED="\033[31m"
+GREEN="\033[32m"
+YELLOW="\033[33m"
+BLUE="\033[34m"
+WHITE="\033[0m"
+
+PS1="\033[31m[\u@\h \w]\$ $WHITE"
+PS1="${BLUE}[\u@\h \w]\$ $WHITE"
+PS1="${BLUE}[\u@\h ${RED}\w${BLUE}]\$ $WHITE"
+
+echo -e "${RED}Error 104$WHITE"
+echo -e "${GREEN}Success! $WHITE"

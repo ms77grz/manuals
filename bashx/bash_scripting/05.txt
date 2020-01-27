@@ -1,0 +1,8 @@
+Using BASH Scripting Arguments
+
+$0 - script name
+$1 - first argument
+$2 - second argument
+${10} - delimited value
+$# - number of args
+$* - all args

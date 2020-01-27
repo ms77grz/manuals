@@ -175,6 +175,9 @@ expr 365 / 7 + 11 \* 2 # 74
 Last Installed Packages
 expac --timefmt='%F %T' '%l %n' | sort -n | tail -n 7
 ######################################
+Show all groups current user belongs to
+$ id -Gn
+######################################
 
 
 
