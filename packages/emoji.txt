@@ -1,0 +1,5 @@
+1 extra/xclip 0.13-2 (14.8 KiB 59.0 KiB) (Installed)
+    Command line interface to the X11 clipboard
+
+1 extra/noto-fonts-emoji 20191016-1 (8.3 MiB 9.0 MiB) (Installed)
+    Google Noto emoji fonts

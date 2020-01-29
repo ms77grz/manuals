@@ -78,7 +78,7 @@ user-session=openbox
 -----------------------------WM (OpenBox)
 $ sudo pacman -S openbox obconf lxappearance lxappearance-obconf
 -----------------------------obmenu-generator
-$ yay -S obmenu3 obmenu-generator perl-linux-desktopfiles gtk2-perl obkey-git
+$ yay -S obmenu3 obmenu-generator gtk2-perl obkey-git
 $ sudo pacman -S geany gmrun conky pcmanfm xarchiver
 -----------------------------User Directories, File Extension and MIME Type
 $ sudo pacman -S xdg-user-dirs xdg-utils desktop-file-utils
