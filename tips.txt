@@ -1,0 +1,1074 @@
+##
+Get UUID of Hard Disks
+ls -l /dev/disk/by-uuid/
+##
+Узнать версию gnome в системе
+gnome-shell --version
+##
+Ctrl+L: Clear the screen. This is similar to running the “clear” command.
+##
+1. How can you see which kernel version a system is currently running?
+uname -a
+uname -v
+uname -r
+
+2. How can you check a system's current IP Address?
+ifconfig
+ip addr show
+
+3. How do you check for free disk space?
+df -ah
+# df is a disk free command and -ah is all file systems and human readable formatting
+
+4. How do you manage services on a system?
+service udev status
+systemctl status udev.service
+
+5. How would you check the total size of a directory's contents on disk?
+du -sh Python/
+
+6. How would you check for open ports on a Linux machine?
+netstat
+sudo netstat -tulpn
+
+7. How do you check CPU usage for a process?
+ps -aux | grep chromium-browser
+top
+htop #sudo snap install htop 
+
+8. Dealing with Mounts
+ls /mnt
+mount /dev/sda2 /mnt
+mount
+
+ping -c 1 ya.ru || ping -с 1 mail.ru - если первый проходит, второй не начинает
+если первый не проходит, начинается второй
+
+ping -c 1 ya.ru && ping -с 1 mail.ru - если первый проходит, то проходит и второй
+если первый не проходит, не проходит и второй
+
+# "вытаскивает строку, указанную в запросе к определенному файлу"
+grep -i 6 linux_commands.txt
+6. How would you check for open ports on a Linux machine?
+
+# Adding an alias to tip some stuff
+echo "alias tips='subl /media/magax/Collection/1web/tips.txt'" >> ~/.bash_aliases && source ~/.bash_aliases
+
+# Switch back to the last working directory
+cd -
+
+# Running multiple commands in one single command
+ping -c 2 ya.ru ; ping -c 2 mail.ru ; ping -c 2 auto.ru
+
+# Easily search and use the commands that you had used in the past
+ctrl+r search_term
+By default, it will show just one result. To see more results matching your search term, you will have to use ctrl+r again and again. To quit reverse search, just use Ctrl+C.
+
+# Unfreeze your Linux terminal from accidental Ctrl+S
+ctrl+Q
+
+##
+Reading a log file in real time
+In situations where you need to analyze the logs while the application is running, you can use the tail command with -f option.
+
+tail -f path_to_Log
+You can also use the regular grep options to display only those lines that are meaningful to you:
+
+tail -f path_to_log | grep search_term
+You can also use the option F here. This will keep the tail running even if the log file is deleted. So if the log file is created again, tail will continue logging.
+##
+How to read Gzip compressed files in Linux command line
+https://itsfoss.com/read-compressed-log-files-linux/
+zip --encrypt ismail.zip *
+пароль на содержимое каталога ismail со всеми его файлами
+##
+Example syntax for Secure Copy (scp)
+What is Secure Copy?
+scp allows files to be copied to, from, or between different hosts. It uses ssh for data transfer and provides the same authentication and same level of security as ssh.
+http://www.hypexr.org/linux_scp_help.php
+##
+Use less to read files
+less path_to_file
+##
+Reuse the last item from the previous command with !$
+Using the argument of the previous command comes handy in many situations.
+ll tips.txt
+less !$
+A better way to do the same is to use alt+. . You can use . a number times to shuffle between the options of the last commands.
+##
+Reuse the previous command in present command with !!
+You can call the entire previous command with !!. This comes particularly useful when you have to run a command and realize that it needs root privileges.
+
+apt install vlc
+sudo !!
+
+A quick sudo !! saves plenty of keystrokes here.
+Use !! to use last command as an argument
+##
+Using alias to fix typos
+alias gerp=grep
+This way you won’t have to retype the command again.
+##
+If there are some commands or scripts that need user interaction and you know that you have to enter Y each time it requires an input, you can use Yes command.
+
+Just use it in the below fashion:
+
+yes | command_or_script
+##
+Empty a file without deleting it
+If you just want to empty the contents of a text file without deleting the file itself, you can use a command similar to this:
+
+> filename
+##
+echo "this is some test file" > test_file.txt
+less test_file.txt
+> test_file.txt
+less test_file.txt
+##
+Using help with any command
+Almost all command and command line tool come with a help page that shows how to use the command. Often using help will tell you the basic usage of the tool/command.
+
+Just use it in this fashion:
+
+command_tool --help
+##
+pgrep -u magax chromium-browse 
+pgrep -u magax sublime_text
+pgrep -u magax
+
+How to make pgrep list process names as well
+pgrep -u magax -l
+
+How to make pgrep list full command as well
+pgrep -u magax -a
+pgrep -u magax sublime_text -a
+
+How to make pgrep only display the newest process
+pgrep -u magax -n -l
+
+How to make pgrep only display the oldest process
+grep -u magax -o -l
+##
+xclip test_file.txt
+xclip -o
+# Поместить содержимое текущей директории в буфер обмена
+$ ls -la | xclip
+
+# Поместить информацию о времени работы системы в буфер обмена
+$ uptime | xclip
+Чтобы не только сохранить вывод какой-либо команды в буфере обмена, но и вывести его на экран, необходимо использовать xclip следующим образом:
+
+$ uptime | xclip -filter
+ 09:22:35 up 4 days,  2:32,  1 user,  load average: 1.93, 1.84, 1.62
+Чтобы сохранить содержимое буфера в файле, необходимо просто перенаправить вывод xclip в необходимый файл:
+
+# Сохранить содержимое буфера в файле clipboard.txt
+$ xclip -o > clipboard.txt
+А например, вот так можно отсортировать данные в буфере обмена:
+
+$ xclip -o | sort | xclip
+
+Чтобы не только сохранить вывод какой-либо команды в буфере обмена, но и вывести его на экран, необходимо использовать xclip следующим образом:
+
+$ uptime | xclip -filter
+ 09:22:35 up 4 days,  2:32,  1 user,  load average: 1.93, 1.84, 1.62
+Чтобы сохранить содержимое буфера в файле, необходимо просто перенаправить вывод xclip в необходимый файл:
+
+# Сохранить содержимое буфера в файле clipboard.txt
+$ xclip -o > clipboard.txt
+А например, вот так можно отсортировать данные в буфере обмена:
+
+$ xclip -o | sort | xclip
+По умолчанию xclip помещает содержимое в XA_PRIMARY (primary) буфер. Чтобы вставить содержимое из этого буфера, необходимо нажать среднюю кнопку мыши в терминале. Это не всегда удобно, так как часто необходимо вставлять содержимое в GUI-приложение, где нажатие средней кнопки мыши работает иначе, или, наконец, просто пользоваться хот-кеями Ctrl+V / Shift+Insert. Для того, чтобы это было возможно, необходимо помещать содержимое в буфер XA_CLIPBOARD (clipboard), используя следующие параметры xclip:
+
+$ uptime | xclip -filter -selection clipboard (or just selection c)
+ 09:33:46 up 4 days,  2:36,  1 user,  load average: 1.02, 1.52, 1.55
+
+# Нажимаем Shift+Insert
+$ 09:33:46 up 4 days,  2:36,  1 user,  load average: 1.02, 1.52, 1.55
+Аналогичной функциональностью обладает утилита xsel.
+
+xclip-copyfile   xclip-cutfile    xclip-pastefile
+file* - using for example wildcards
+===========================================
+Оба метода идентичны
+cat test_file.txt | cclip
+cclip < test_file.txt
+--------------------------
+
+
+##
+BEGINNER'S GUIDE TO THE BASH TERMINAL
+
+NAVIGATION
+
+ls - list directory contents
+pwd - print name of current/working directory
+cd - change working directory
+pushd/popd - put working directory on a stack
+file - determine file type
+locate - find files by name
+updatedb - update database for locate
+which - locate a command
+history - display bash command history
+
+GETTING HELP
+
+whatis - display the on-line manual descriptions
+apropos - search the manual page names and descriptions
+man - an interface to the on-line reference manuals
+
+WORKING WITH FILES
+
+mkdir - create a directory/make directories
+touch - change file timestamps/create empty files
+cp - copy files and directories
+mv - move (rename) files
+rm - remove files or directories
+rmdir - remove empty directories
+
+TEXT FILES
+
+cat - concatenate files and print on the standard output
+more/less - file perusal filter for crt viewing
+nano - command line text editor
+
+USERS
+
+sudo - execute a command as superuser
+su - change user ID or become another user
+users - print the user names of users currently logged in
+id - print real and effective user and group IDs
+
+CHANGING FILE PERMISSIONS
+
+chmod - change permissions of a file
+
+KILLING PROGRAMS AND LOGGING OUT
+
+Ctrl+C - kill a running command
+killall - kill processes by name
+exit - log out of bash
+
+USEFUL SHORTCUTS
+
+Ctrl+D - signal bash that there is no more input
+Ctrl+L - redraw the screen
+Ctrl++ - make text bigger in terminal emulator
+Ctrl+- - make text smaller in terminal emulator
+##
+ln -srf learn-python3-the-hard-way-jul-4-2017.pdf ~/Desktop/learn-python3
+-s, --symbolic
+              make symbolic links instead of hard links
+-r, --relative
+              create symbolic links relative to link location
+-f, --force
+              remove existing destination files
+##
+
+alias YT='youtube-viewer -C'
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias cclip='xclip -selection c'
+alias ch='chromium-browser https://translate.google.com/?sl#en/ru/'
+alias dollar='/media/magax/Collection/1web/webapps/parsing/ruble.py'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -alF'
+alias ls='ls --color=auto'
+alias music='cd /media/magax/Collection/1web/webapps/music && source venv/bin/activate'
+alias pclip='xclip -selection c -o'
+alias tips='subl /media/magax/Collection/1web/webapps/networking/tips.txt'
+alias tr='/media/magax/Collection/1web/webapps/networking/translator/translator.py'
+alias upd='upgrade && update -y'
+alias update='sudo apt-get update'
+alias upgrade='sudo apt-get upgrade'
+alias web='cd /media/magax/Collection/1web/'
+alias zxc='PS1="\[\e[40m\]\[\e[1;30m\]\\[\e[0m\]$"'
+
+##
+cd $HOME - переход в домашний каталог
+echo ~magax - выводит домашний каталог пользователя magax
+ls "$HOME" - отображение содержимого домашнего каталога пользователя
+##
+To list the TCP ports that are being listened on, and the name of each listener’s daemon and its PID, run the following command:
+
+sudo netstat -plnt
+##
+How to show only hidden files in Terminal?
+ls -ld .?* 
+Will only list hidden files .
+
+Explain :
+
+ -l     use a long listing format
+
+ -d, --directory
+              list  directory entries instead of contents, and do not dereference symbolic links
+
+.?* will only state hidden files 
+##
+How to find the full path of sudo to run a command
+magax@pop-os:~$ which sudo
+/usr/bin/sudo
+
+magax@pop-os:~$ type -a sudo
+sudo is aliased to `/home/magax/.test'
+sudo is /usr/bin/sudo
+##
+magax@pop-os:~$ cat /etc/environment 
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+magax@pop-os:~$ 
+##
+If you want to delete the bottom line
+head -n -1 test_file.txt > temp.txt; mv temp.txt test_file.txt
+
+and if you want to delete the top line
+tail -n +2 test_file.txt
+##
+unalias -a
+will remove all alias definitions from the current shell execution environment
+##
+Listing only directories in UNIX
+ls -dl */
+
+find . -maxdepth 1 -type d
+find . -maxdepth 2 -type d
+##
+Generate a sequence of numbers.
+seq 12
+echo {1..12}
+echo {z..A}
+echo {a..z}
+for ((i=1; i<=99; ++i)); do echo $i; done
+##
+Produce 10 copies of the same string
+echo boo{,,,,,,,,,,}
+##
+Monitor CPU in real time
+watch grep \"cpu MHz\" /proc/cpuinfo
+##
+Recall “N”th command from your BASH history without executing it.
+!2000:p
+##
+Get video information with ffmpeg
+ffprobe is specially intended to get video information Show Sample Output
+
+ffprobe video.flv
+##
+Runs previous command but replacing
+echo "no tipozs"
+^z
+echo "no tipos"
+no tipos
+##
+The following command will allow you to see all the file systems currently mounted with nice formatting
+mount | column -t
+##
+less /etc/apt/sources.list
+##
+How to Format External Hard Disk to exFAT
+sudo fdisk -l
+sudo apt install exfat-fuse exfat-utils
+sudo mkfs.exfat -n LABEL /dev/sdXn
+sudo fsck.exfat /dev/sdXn
+##
+Adding and removing PPA
+sudo add-apt-repository ppa:relan/exfat
+sudo add-apt-repository --remove ppa:relan/exfat
+
+additional information
+ls -l /etc/apt/sources.list.d
+sudo apt-key list
+##
+sudo apt install tftp-hpa tftpd-hpa
+
+sudo /etc/init.d/tftpd-hpa start
+
+Put file to /var/lib/tftpboot.
+echo "hello" | sudo tee /var/lib/tftpboot/hello.txt
+Get file with tftp from TFTP server.
+
+$ echo "get hello.txt" | tftp 127.0.0.1
+tftp> get hello.txt
+tftp>
+$ cat hello.txt
+hello
+
+tftp 127.0.0.1
+tftp> get myfile
+
+cd /var/lib/tftpboot/
+sudo rm *
+
+cd /etc/default/
+cat tftpd-hpa
+TFTP_USERNAME="tftp"
+TFTP_DIRECTORY="/var/lib/tftpboot"
+TFTP_ADDRESS=":69"
+TFTP_OPTIONS="--secure"
+
+#gedit /etc/default/tftpd-hpa
+TFTP_USERNAME="tftp"
+TFTP_DIRECTORY="/media/magax/Collection/1web/webapps/networking/tftp"
+TFTP_ADDRESS=":69"
+TFTP_OPTIONS="--secure --create"
+
+sudo /etc/init.d/tftpd-hpa restart
+sudo /etc/init.d/tftpd-hpa stop
+##
+googletrans 2.3.0
+pip install git+https://github.com/BoseCorp/py-googletrans.git --upgrade
+from googletrans import Translator
+translator = Translator()
+
+s = Translator().translate(text='Hello my friend', dest='es').text
+print(s)
+
+result = translator.translate(text, dest='ru', src='en')
+print(result.text)
+##
+How do I know from where starts my python
+>>> import os, sys
+>>> os.path.dirname(sys.executable)
+'/media/magax/Collection/1web/webapps/venv/bin'
+>>>
+##
+find . -type f -name "*.JPG"
+find . -type f -name "*43.py"
+find . -type f -name "*10.26*"
+less $(find . -type f -name "*10.26.69.191.cfg")
+##
+Поиск слова файле
+grep -r слово
+grep -r answer
+grep -o "\bsaved" ftth_hosts.csv | wc -l
+grep -o "\bunsaved" ftth_hosts.csv | wc -l
+grep -r "end" -c
+grep -r "end" | wc -l
+##
+how to sort dict
+from operator import itemgetter
+sorted_models = sorted(foo.items(), key=itemgetter(1))
+sorted_models = sorted(foo.items(), key=itemgetter(1), reverse=True)
+##
+quick screencast
+echo $DISPLAY
+ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :1 -c:v libx264 -qp 0 -preset ultrafast capture.mkv
+##
+Sort files by date
+ls -lat | grep Dec
+ls -lath | grep Dec
+ls -lathS | grep Dec
+ls -lathSr | grep Dec
+##
+save mp3 from vk
+Ctrl-Shft-I Network - Media - Open in new tab - Save as..
+##
+IPython comes with some automatic reloading magic:
+
+%load_ext autoreload
+%autoreload 2
+
+if you want to always enable this settings, modify your IPython configuration file:
+c.InteractiveShellApp.extensions = ['autoreload']     
+c.InteractiveShellApp.exec_lines = ['%autoreload 2']
+
+If you don't have the file ~/.ipython/profile_default/ipython_config.py,
+you need to call ipython profile create first. Or the file may be located at $IPYTHONDIR.
+##
+https://www.linkedin.com/
+ms77grz@gmail.com
+TYZ%83?hETZNtfs8rzK{@q$oh
+
+##
+100 000 рублей под 3 процента в год
+Расчет:
+100000*1.03**12
+142576.08868461792
+142576 рублей
+##
+Конъюнкту́ра — создавшееся положение, обстановка в какой-либо области либо ситуации общественной жизни. 
+##
+Linux Terminal: Get Memory, Temp, CPU & Make Them Useful
+
+free -h | awk '/^Mem:/ {print $3 "/" $2}'
+
+sudo apt-get install lm-sensors
+sensors
+
+sensors | awk '/^temp1/ {print $2}'
+
+ps -axch -o cmd:15,%mem --sort=-%mem | head
+ps -axch -o cmd:15,%cpu --sort=-%cpu | head
+
+https://www.youtube.com/watch?v=MNwpdqD_I8Y
+##
+https://losst.ru/ispolzovanie-awk-v-linux
+
+##
+pip install inflect
+import inflect
+p = inflect.engine()
+word = 'man'
+print('The plural of', word, ' is ', p.plural(word))
+>>>The plural of man  is  men
+cat_count = 5
+print('I saw', cat_count, p.plural('cat', cat_count))
+>>>I saw 5 cats
+##
+Installing Ranger
+https://www.digitalocean.com/community/tutorials/installing-and-using-ranger-a-terminal-file-manager-on-a-ubuntu-vps
+sudo apt-get update
+sudo apt-get install ranger caca-utils highlight atool w3m poppler-utils mediainfo
+ranger --copy-config=all
+subl ~/.config/ranger/rc.conf
+set preview_images true
+
+https://emunix.org/post/atool/ # documentation
+
+##
+sudo apt install i3blocks
+Could not connect to i3 on socket "/tmp/i3-ipc.sock": No such file or directory
+##
+Sort the output of "ls" by last modified date
+ls -tr
+ls -ltr
+##
+youtube-viewer -n -A delerium
+stop - spacebar
+next - q
+##
+nosetests
+nosetests -vv --collect-only
+nosetests --exe
+##
+tput colors   -This will report how many colors your terminal is using.
+echo $TERM   -This will tell you what terminal you are using.
+echo $COLORTERM  -If you are using a gnome you should see gnome-terminal.
+##
+Changing monokai comment foreground color
+subl /usr/share/code/resources/app/extensions/theme-monokai/themes/monokai-color-theme.json
+{
+	"name": "Comment",
+	"scope": "comment",
+	"settings": {
+	"foreground": "#C4B36A"
+}
+##
+youtube-viewer -E
+==== COMMAND LINE EXAMPLES ====
+
+Command: youtube-viewer -A -n -4 russian music -category=10
+Results: play all the video results (-A)
+         only audio, no video (-n)
+         quality 480p (-4)
+         search for "russian music"
+         in the "10" category, which is the Music category.
+         -A will include the videos from the next pages as well.
+
+Command: youtube-viewer --comments 'https://www.youtube.com/watch?v=U6_8oIPFREY'
+Results: show video comments for a specific video URL or videoID
+
+Command: youtube-viewer --results=5 -up=khanacademy -D
+Results: set 5 results,
+         get playlists created by a specific user
+         and print them with details (-D)
+
+Command: youtube-viewer --author=UCBerkeley atom
+Results: search only in videos uploaded by a specific author
+
+Command: youtube-viewer -S=vsauce
+Results: get the video subscriptions for a username
+
+Command: youtube-viewer --page=2 -u=Google
+Results: show latest videos uploaded by Google,
+         starting with the page number 2.
+
+Command: youtube-viewer cats --order=viewCount --duration=short
+Results: search for 'cats' videos, ordered by ViewCount and short duration.
+
+Command: youtube-viewer --channels russian music
+Results: search for channels.
+
+Command: youtube-viewer -uf=Google
+Results: show latest videos favorited by a user.
+
+
+==== USER INPUT EXAMPLES ====
+
+A STDIN option can begin with ':', ';' or '='.
+
+Command: <ENTER>, :n, :next
+Results: get the next page of results.
+
+Command: :b, :back (:r, :return)
+Results: get the previous page of results.
+
+Command: :i4..6, :i7-9, :i20-4, :i2, :i=4, :info=4
+Results: show extra information for the selected videos.
+
+Command: :d5,2, :d=3, :download=8
+Results: download the selected videos.
+
+Command: :c2, :comments=4
+Results: show comments for a selected video.
+
+Command: :r4, :related=6
+Results: show related videos for a selected video.
+
+Command: :a14, :author=12
+Results: show videos uploaded by the author who uploaded the selected video.
+
+Command: :p9, :playlists=14
+Results: show playlists created by the author who uploaded the selected video.
+
+Command: :subscribe=7
+Results: subscribe to the author's channel who uploaded the selected video.
+
+Command: :like=2, :dislike=4,5
+Results: like or dislike the selected videos.
+
+Command: :fav=4, :favorite=3..5
+Results: favorite the selected videos.
+
+Command: 3, 5..7, 12-1, 9..4, 2 3 9
+Results: play the selected videos.
+
+Command: :q3,5, :q=4, :queue=3-9
+Results: enqueue the selected videos to play them later.
+
+Command: :pq, :play-queue
+Results: play the videos enqueued by the :queue option.
+
+Command: :re="^Linux"
+Results: play videos matched by a regex.
+Example: valid title: "Linux video"
+
+Command: :regex="linux.*part \d+/\d+"
+Example: valid title: "Introduction to Linux (part 1/4)"
+
+Command: :anp 1 2 3
+Results: play the first three videos from every page.
+
+Command: :r, :return
+Results: return to the previous section.
+##
+learn-python3-thw-code
+https://github.com/zedshaw/learn-python3-thw-code
+
+Creating the Skeleton Project Directory
+mkdir projects
+cd projects
+mkdir skeleton
+cd skeleton
+mkdir bin NAME tests docs
+
+
+I use a directory named projects to store all the various things I'm working on.
+Inside that directory I have my skeleton directory that I put the basis of my projects into.
+The directory NAME will be renamed to whatever you are calling your project's main module when you use the skeleton.
+
+Next, we need to set up some initial files.
+Here's how you do that on Linux:
+touch NAME/__init__.py
+touch tests/__init__.py
+
+That creates an empty Python module directory we can put our code in.
+Then we need to create a setup.py file we can use to install our project later if we want.
+touch setup.py
+
+Edit this file so that it has your contact information and is ready to go for when you copy it.
+Finally, you will want a simple skeleton file for tests named tests/NAME_tests.py
+
+nosetests --exe
+
+Whenever you want to start a new project, just do this:
+1. Make a copy of your skeleton directory. Name it after your new project.
+2. Rename (move) the NAME directory to be the name of your project or whatever you want to call your room module.
+3. Edit your setup.py to have all the information for your project.
+4. Rename tests/NAME_tests.py to also have module name.
+5. Double check it's all working by using nosetests again.
+6. Start coding.
+
+Writing a Test Case
+1. Copy skeleton to ex47.
+2. Rename everything with NAME to ex47.
+3. Change the word NAME in all the files to ex47.
+4. Finally, remove all the *.pyc files to make sure you're clean.
+
+Next, create a simple file ex47/game.py where you can put the code to test.
+
+##
+https://pixabay.com/
+ms77grz
+bAT261e$tqMA$d|2AeKMu7c{9
+##
+snap info blender
+Чтобы посмотреть список доступных пакетов, откройте терминал и наберите:
+snap find
+Вы можете установить snap пакет в Ubuntu командой:
+sudo snap install пакет
+Также можно посмотреть все пакеты, установленные в системе:
+snap list
+Также вы можете посмотреть историю изменений, внесенных, в систему с помощью этого пакетного менеджера:
+snap changes
+Если вы хотите обновить пакет snap, до более новой версии, выполните:
+sudo snap refresh пакет
+Если установлена самая свежая версия вы получите сообщение об ошибке.
+sudo snap refresh --list
+sudo snap revert <package>
+
+
+Удалить snap пакет можно такой командой:
+sudo snap remove пакет
+##
+https://snapcraft.io/blender
+sudo snap install blender --beta --classic
+##
+Your Trackmania Forever account informations:
+
+Your login: ms77grz
+Your password: VfufIgfuf2
+Your key: TMNF-C4P9-KCCR-8J7B-EPY
+##
+How to get full path of a file?
+readlink -f file.txt
+or
+realpath yourfile
+##
+How Jump To A Specific Time In A YouTube Video URL
+Just add "#t=*m*s" to the end of the URL where the asterisks represent minutes and seconds respectively.
+https://www.youtube.com/watch?v=apACNr7DC_s&list=PLi01XoE8jYohWFPpC17Z-wWhPOSuh8Er-&index=%22#t=1m10s
+##
+Преобразуем список в одну строку методом '|'.join(names)
+
+>>> names = ['Terry', 'John', 'Michael', 'Graham', 'Eric', 'Alex']
+>>> names
+['Terry', 'John', 'Michael', 'Graham', 'Eric', 'Alex']
+>>> type(names)
+<class 'list'>
+>>> pythons = '|'.join(names)
+>>> pythons
+'Terry|John|Michael|Graham|Eric|Alex'
+>>> type(pythons)
+<class 'str'>
+>>>
+
+Обратное преобразование строки в список по разделителю методом .split('|')
+
+>>> individuals = pythons.split('|')
+>>> individuals
+['Terry', 'John', 'Michael', 'Graham', 'Eric', 'Alex']
+>>> type(individuals)
+<class 'list'>
+>>>
+##
+FILE.READLINES
+Считывает из файла все строки в список и возвращает его.
+file.readlines()  -> list
+
+with open('my_file.txt') as f:
+  my_lines = f.readlines()  # ['The first line.\n', '\n', 'The last line.\n']
+
+##
+09:06 ~ $ python3
+Python 3.6.0 (default, Jan 13 2017, 00:00:00) 
+[GCC 4.8.4] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+Как определить систему, на которой вы работаете
+>>> import sys
+>>> sys.platform
+'linux'
+>>>
+
+Информация об используемой версии Python
+>>> print(sys.version)
+3.6.0 (default, Jan 13 2017, 00:00:00) 
+[GCC 4.8.4]
+>>>
+
+Как получить имя папки, в контексте которой выполняется код, используя функцию getcwd
+>>> import os
+>>> os.getcwd()
+'/home/ms77grz'
+>>>
+
+Отобразить содержимое текущего каталога:
+>>> os.listdir()
+
+Можно получить доступ к системным переменным окружения
+os.environ
+
+А также индивидуально (используя функцию getenv):
+>>> os.getenv('HOME')
+'/home/ms77grz'
+>>>
+
+Функция date.today возвращает текущую дату:
+>>> import datetime
+>>> datetime.date.today()
+datetime.date(2018, 4, 30)
+>>>
+
+>>> day = datetime.date.today().day
+>>> month = datetime.date.today().month
+>>> year = datetime.date.today().year
+>>> print(day, month, year)
+30 4 2018
+>>> print(day, month, year, sep=':')                                                                                                                                                                           
+30:4:2018
+
+>>> datetime.date.isoformat(datetime.date.today())
+'2018-04-30'
+##
+Функция strftime возвращяет текущее время
+>>> import time
+>>> time.strftime('%I:%M')
+'05:30'
+>>> time.strftime('%A %p')
+'Monday PM'
+##
+Функция escape из модуля html экранирует проблемные спецсимовлы в строке:
+>>> import html
+>>> html.escape("This HTML fragment contains a <script>script</script> tag.")
+'This HTML fragment contains a &lt;script&gt;script&lt;/script&gt; tag.'
+##
+Функция unescape возвращяет экранированную строку в оригинальное представление:
+>>> html.unescape('This HTML fragment contains a &lt;script&gt;script&lt;/script&gt; tag.')
+'This HTML fragment contains a <script>script</script> tag.'
+##
+Модуль sys и его функции:
+>>> import sys
+>>> sys.executable
+'/home/ms77grz/.local/bin/python3'
+>>> sys.version
+'3.6.0 (default, Jan 13 2017, 00:00:00) \n[GCC 4.8.4]'
+##
+Подсчет хеш-значения файла:
+>>> import hashlib
+>>> file = open('1', 'rb').read()
+>>> hashlib.md5(file).hexdigest()
+'d8df177ec44d9ba142a3310af064d3a2'
+##
+The method getcwd() returns current working directory of a process
+##
+f-strings in Python
+
+student = 'Bob'
+testScore = 21
+
+print('Hello, {0}. You scored {1} in your test.'.format(student, testScore))
+Hello, Bob. You scored 21 in your test.
+
+print('Hello, {1}. You scored {0} in your test.'.format(student, testScore))
+Hello, 21. You scored Bob in your test.
+
+student = 'Alice'
+testScore = 39
+
+print(f'Hello, {student}. You scored {testScore} in your test.')
+Hello, Alice. You scored 39 in your test.
+
+forename = 'Arthur'
+surname = 'Ascii'
+testScore =95
+testMax = 100
+
+print('Hello, {0} {1}. You scored {2} in your test. This was out of maximum of a {3}.'.format(forename, surname, testScore, testMax))
+Hello, Arthur Ascii. You scored 95 in your test. This was out of maximum of a 100.
+
+print(F'Hello, {forename} {surname}. You scored {testScore} in your test. This was out of maximum of a {testMax}.')
+Hello, Arthur Ascii. You scored 95 in your test. This was out of maximum of a 100.
+
+
+message = (
+    ...: F'Hello, {forename} {surname}.'
+    ...: F'You scored {testScore} in your test.'
+    ...: F'This was out of a maximum of {testMax} for that particular test.'
+    ...: )
+
+print(message)
+Hello, Arthur Ascii.You scored 95 in your test.This was out of a maximum of 100 for that particular test.
+
+nameDictionary = {'forename': 'Bertrand', 'surname': 'Binary'}
+
+print(F"Your forename is {nameDictionary['forename']} and your surname is {nameDictionary['surname']}")
+Your forename is Bertrand and your surname is Binary
+##
+Clearing bash history
+...In other words, the history -c command only works when it is issued from the last remaining terminal window.
+Clearing bash history on a regular basis
+cat /dev/null > ~/.bash_history
+
+crontab -e
+00 23 * * * cat /dev/null > ~/.bash_history
+
+Min  Hour Day  Mon  Weekday
+*    *    *    *    *  command to be executed
+┬    ┬    ┬    ┬    ┬
+│    │    │    │    └─  Weekday  (0=Sun .. 6=Sat)
+│    │    │    └──────  Month    (1..12)
+│    │    └───────────  Day      (1..31)
+│    └────────────────  Hour     (0..23)
+└─────────────────────  Minute   (0..59)
+----------------------------------------------------------------------------
+* * * * * echo "Write this every minute...$(date)" >> ~/Desktop/crontab_test
+0 0 * * * "do something once a day"
+*/15 * * * * "do something every 15 minutes"
+0 0 5,20 * * "do something 5th and 20th at 0:00"
+0 9-18 * * 1-5 "do something every hour from 9 to 18 from Monday through Friday"
+
+https://crontab.guru/
+##
+System messages
+sudo apt install libnotify-bin
+notify-send "Title" "Message"
+
+##
+sudo apt-get install dconf-editor
+something like... /org/gnome/GWeather/temperature-unit "centigrade"
+org/gnome/desktop/interface/clock-show-seconds
+##
+ntopng
+sudo apt install ntopng
+subl /etc/ntopng.conf
+127.0.0.1:3000
+admin
+admin
+##
+youtube
+K - play/pause
+L - forward 10 sec
+J - backward 10 sec
+Tab - focus
+0 - starting position
+2 - 20%
+3 - 30% etc.
+Right - 5 sec forward
+Left - 5 sec backward
+M - mute
+F - fullscreen
+Shift + > increase speed
+Shift + < decrease speed
+##
+update youtube-dl
+pip install --upgrade youtube-dl
+##
+upgrading single package
+sudo apt-get install --only-upgrade youtube-dl
+##
+wget -O - https://yt-dl.org/downloads/latest/youtube-dl | sudo tee /usr/local/bin/youtube-dl >/dev/null
+sudo chmod a+x /usr/local/bin/youtube-dl
+sudo youtube-dl -U
+##
+youtube-dl -g, --get-url
+##
+$ u="https://www.youtube.com/watch?v=k4JGSAmu4lg"
+$ t(){/usr/bin/time -f 'Time: %es' "$@";}
+$ youtube-dl -g "$u"
+
+
+##
+ls -Fsh
+##
+wc - print newline, word, and byte counts for each file
+wc -l : Prints the number of lines in a file.
+wc -w : prints the number of words in a file.
+wc -c : Displays the count of bytes in a file.
+wc -m : prints the count of characters from a file.
+wc -L : prints only the length of the longest line in a file.
+##
+
+============
+gravatar
+import hashlib
+hashlib.md5(b'magax@yandex.ru').hexdigest()
+'4644f88ef253b8c1916d6ea36cb4eccf'
+https://ru.gravatar.com/avatar/4644f88ef253b8c1916d6ea36cb4eccf?s=1024
+
+
+##
+How to quickly find a file:
+find . -name "*10.25.17.161*"
+
+How to delete file (last output):
+rm -i $(!!)
+
+##
+mv lorn_acid.mp3 ../../../../Collection/music/NOVA/
+
+##
+sudo shutdown -P +120
+sudo shutdown -P 1:00
+sudo shutdown -P now
+sudo shutdown -c
+
+##
+snipet for Jinja2 in VSCODE
+html.json
+{
+	"extends": {
+		"prefix": "extends",
+		"body": "{% extends \"$1.html\" %}",
+		"description": "Extends Statement Tag"
+	},
+	"block content": {
+		"prefix": "block",
+		"body": "{% block content %}\r$1\r{% endblock %}",
+		"description": "Block Content Statement Tag"
+
+	},
+	"statement": {
+		"prefix": "statement",
+		"body": "{% $1 %}",
+		"description": "Blank Statement Tag"
+	},
+	"expresion": {
+		"prefix": "expression",
+		"body": "{{ $1 }}",
+		"description": "Blank Expression Tag"
+	}
+}
+##
+EMMET
+
+tr[valign=top]
+<tr valign="top"></tr>
+
+td>img
+<td><img src="" alt=""></td>
+
+##
+geopandas ...
+OSError: Could not find libspatialindex_c library file
+sudo apt install python3-rtree
+
+##
+see all variables in ipython
+who
+whos
+
+##
+proxy on python
+http://qaru.site/questions/625418/how-to-vpnproxy-connect-in-python
+
+##
+how to reduce file size with ffmpeg
+ffmpeg -i input.mkv -vf "scale=iw/2:ih/2" half_the_frame_size.mkv
+ffmpeg -i input.mkv -vf "scale=iw/3:ih/3" a_third_the_frame_size.mkv
+ffmpeg -i input.mkv -vf "scale=iw/4:ih/4" a_fourth_the_frame_size.mkv
+
+##
+How do I delete an exported environment variable?
+env | grep FLASK
+unset FLASK_APP
+##
+python -m pip install --upgrade pip setuptools wheel
+##
+Change column letters to numbers?
+'Tools'>'Options'>'LibreOffice Calc'>'Formula'>'Formula Options'
+Excel R1C1

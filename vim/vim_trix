@@ -22,7 +22,8 @@ delete all lines from current line to the end ot the file - dG
 Enter to visual block mode <C-v>
 Paste ° - <C-v> u 00b0
 
-
+So instead of `<c-v>u2713`
+`<c-k>OK` and the result will be the same: `✔`.
 ########################## Multiline editing ########################
 line one
 line two
