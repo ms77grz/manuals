@@ -93,3 +93,13 @@ community/polkit-gnome 0.105-4 (58.1 KiB 343.0 KiB) (Installed)
 5 aur/skypeforlinux-stable-bin 8.55.0.141-1 (+206 11.18%) (Installed)
     Skype for Linux - Stable/Release Version
 ##################################################
+aur/auto-cpufreq-git r61.0fa7d42-1 (+2 1.41%) (Installed)
+    Automatic CPU speed & power optimizer
+##################################################
+community/ncdu 1.14.1-1 (40.6 KiB 83.0 KiB) (Installed)
+    Disk usage analyzer with an ncurses interface
+##################################################
+1 extra/lsof 4.93.2-1 (105.6 KiB 237.0 KiB) (Installed)
+    Lists open files for running Unix processes
+##################################################
+    
